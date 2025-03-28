@@ -8,7 +8,15 @@ from utils.feature_selection import select_features
 from utils.visualization import generate_visualizations
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={
+    r"/api/*": {
+        "origins": [
+            "http://localhost:5173",  # Local development frontend
+            "https://data-visualization-platform.vercel.app/",  # Your frontend Vercel domain
+            "*"  # Be cautious with this in production
+        ]
+    }
+})
 
 # Configure upload folder
 UPLOAD_FOLDER = 'uploads'
