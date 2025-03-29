@@ -2,6 +2,13 @@
 
 A modern web application that automatically generates insightful visualizations from uploaded datasets using AI and machine learning techniques.
 
+## 🚀 Live Application
+Check out the deployed version of LUMINA AI:
+
+🔗 [![LUMINA AI](https://img.shields.io/badge/Live%20Application-Click%20Here-brightgreen)](https://data-visualization-platform.vercel.app/)
+
+---
+
 ## Features
 
 - Automatic data cleaning and preprocessing
