@@ -1,0 +1,477 @@
+2025-04-27 19:43:36,814 - INFO - Starting Flask application
+2025-04-27 19:43:36,848 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-27 19:43:36,848 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-27 19:43:36,864 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-27 19:43:40,045 - INFO - Starting Flask application
+2025-04-27 19:43:40,063 - WARNING -  * Debugger is active!
+2025-04-27 19:43:40,069 - INFO -  * Debugger PIN: 114-609-266
+2025-04-27 19:44:10,356 - INFO - Received file upload request
+2025-04-27 19:44:10,360 - INFO - File saved successfully: uploads\restaurant_menu_optimization_data.csv
+2025-04-27 19:44:10,360 - ERROR - Error during file upload: analyze_features() got an unexpected keyword argument 'target_col'
+2025-04-27 19:44:10,362 - INFO - 127.0.0.1 - - [27/Apr/2025 19:44:10] "[35m[1mPOST /api/upload HTTP/1.1[0m" 500 -
+2025-04-27 19:45:00,416 - INFO -  * Detected change in 'D:\\Presidency\\Sem 6\\Data Handling\\project\\backend\\utils\\feature_selection.py', reloading
+2025-04-27 19:45:00,418 - INFO -  * Detected change in 'D:\\Presidency\\Sem 6\\Data Handling\\project\\backend\\utils\\feature_selection.py', reloading
+2025-04-27 19:45:01,742 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-27 19:45:05,004 - INFO - Starting Flask application
+2025-04-27 19:45:05,024 - WARNING -  * Debugger is active!
+2025-04-27 19:45:05,030 - INFO -  * Debugger PIN: 114-609-266
+2025-04-27 19:45:07,654 - INFO -  * Detected change in 'D:\\Presidency\\Sem 6\\Data Handling\\project\\backend\\utils\\feature_selection.py', reloading
+2025-04-27 19:45:07,654 - INFO -  * Detected change in 'D:\\Presidency\\Sem 6\\Data Handling\\project\\backend\\utils\\feature_selection.py', reloading
+2025-04-27 19:45:08,539 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-27 19:45:15,786 - INFO - Starting Flask application
+2025-04-27 19:45:15,825 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-27 19:45:15,825 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-27 19:45:15,840 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-27 19:45:19,030 - INFO - Starting Flask application
+2025-04-27 19:45:19,048 - WARNING -  * Debugger is active!
+2025-04-27 19:45:19,051 - INFO -  * Debugger PIN: 114-609-266
+2025-04-27 19:45:30,878 - INFO - Starting Flask application
+2025-04-27 19:45:30,920 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-27 19:45:30,920 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-27 19:45:30,934 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-27 19:45:34,483 - INFO - Starting Flask application
+2025-04-27 19:45:34,502 - WARNING -  * Debugger is active!
+2025-04-27 19:45:34,507 - INFO -  * Debugger PIN: 114-609-266
+2025-04-27 19:45:34,539 - INFO - Received file upload request
+2025-04-27 19:45:34,544 - INFO - File saved successfully: uploads\restaurant_menu_optimization_data.csv
+2025-04-27 19:45:34,544 - ERROR - Error during file upload: analyze_features() got an unexpected keyword argument 'target_col'
+2025-04-27 19:45:34,546 - INFO - 127.0.0.1 - - [27/Apr/2025 19:45:34] "[35m[1mPOST /api/upload HTTP/1.1[0m" 500 -
+2025-04-27 20:07:20,728 - INFO - Starting Flask application
+2025-04-27 20:07:20,769 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-27 20:07:20,769 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-27 20:07:20,783 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-27 20:07:24,225 - INFO - Starting Flask application
+2025-04-27 20:07:24,245 - WARNING -  * Debugger is active!
+2025-04-27 20:07:24,250 - INFO -  * Debugger PIN: 114-609-266
+2025-04-27 20:07:35,375 - INFO - Received file upload request
+2025-04-27 20:07:35,379 - INFO - File saved successfully: uploads\Fortune 500 Companies US.csv
+2025-04-27 20:07:35,379 - ERROR - Error during file upload: analyze_features() got an unexpected keyword argument 'target_col'
+2025-04-27 20:07:35,381 - INFO - 127.0.0.1 - - [27/Apr/2025 20:07:35] "[35m[1mPOST /api/upload HTTP/1.1[0m" 500 -
+2025-04-27 20:40:36,547 - INFO -  * Detected change in 'D:\\Presidency\\Sem 6\\Data Handling\\project\\backend\\utils\\feature_selection.py', reloading
+2025-04-27 20:40:36,549 - INFO -  * Detected change in 'D:\\Presidency\\Sem 6\\Data Handling\\project\\backend\\utils\\feature_selection.py', reloading
+2025-04-27 20:40:37,152 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-27 20:40:40,674 - INFO - Starting Flask application
+2025-04-27 20:40:40,696 - WARNING -  * Debugger is active!
+2025-04-27 20:40:40,702 - INFO -  * Debugger PIN: 114-609-266
+2025-04-27 20:41:11,429 - INFO -  * Detected change in 'D:\\Presidency\\Sem 6\\Data Handling\\project\\backend\\utils\\feature_selection.py', reloading
+2025-04-27 20:41:11,430 - INFO -  * Detected change in 'D:\\Presidency\\Sem 6\\Data Handling\\project\\backend\\utils\\feature_selection.py', reloading
+2025-04-27 20:41:12,252 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-27 20:41:15,550 - INFO - Starting Flask application
+2025-04-27 20:41:15,568 - WARNING -  * Debugger is active!
+2025-04-27 20:41:15,572 - INFO -  * Debugger PIN: 114-609-266
+2025-04-27 20:41:43,689 - INFO -  * Detected change in 'D:\\Presidency\\Sem 6\\Data Handling\\project\\backend\\utils\\feature_selection.py', reloading
+2025-04-27 20:41:43,689 - INFO -  * Detected change in 'D:\\Presidency\\Sem 6\\Data Handling\\project\\backend\\utils\\feature_selection.py', reloading
+2025-04-27 20:41:45,121 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-27 20:42:42,028 - INFO - Starting Flask application
+2025-04-27 20:42:42,074 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-27 20:42:42,076 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-27 20:42:42,095 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-27 20:42:45,474 - INFO - Starting Flask application
+2025-04-27 20:42:45,491 - WARNING -  * Debugger is active!
+2025-04-27 20:42:45,497 - INFO -  * Debugger PIN: 114-609-266
+2025-04-27 20:43:43,150 - INFO - Received file upload request
+2025-04-27 20:43:43,154 - INFO - File saved successfully: uploads\restaurant_menu_optimization_data.csv
+2025-04-27 20:43:43,154 - ERROR - Error during file upload: analyze_features() got an unexpected keyword argument 'target_col'
+2025-04-27 20:43:43,156 - INFO - 127.0.0.1 - - [27/Apr/2025 20:43:43] "[35m[1mPOST /api/upload HTTP/1.1[0m" 500 -
+2025-04-27 20:48:36,721 - INFO - Starting Flask application
+2025-04-27 20:48:36,760 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-27 20:48:36,760 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-27 20:49:01,739 - INFO - Received file upload request
+2025-04-27 20:49:01,742 - INFO - File saved successfully: uploads\restaurant_menu_optimization_data.csv
+2025-04-27 20:49:01,742 - ERROR - Error during file upload: analyze_features() got an unexpected keyword argument 'target_col'
+2025-04-27 20:49:01,743 - INFO - 127.0.0.1 - - [27/Apr/2025 20:49:01] "[35m[1mPOST /api/upload HTTP/1.1[0m" 500 -
+2025-04-27 20:54:54,795 - INFO - Starting Flask application
+2025-04-27 20:54:54,827 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-27 20:54:54,827 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-27 20:54:55,074 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:55] "[33mGET / HTTP/1.1[0m" 404 -
+2025-04-27 20:54:56,380 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:56] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__72378e82_881a_475d_b425_8a59d1d3c103__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:54:56,514 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:56] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__33a7b145_1ca0_43db_9576_5754b95c052c__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:54:56,534 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:56] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__73977f7f_9458_4dbf_8176_e6ba83022348__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:54:56,804 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:56] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__635bf65a_8f13_4f1b_bf66_f16e7be7c188__3 HTTP/1.1[0m" 404 -
+2025-04-27 20:54:56,839 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:56] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__76146cd6_1e36_4e48_8270_2a36e2d663d8__4 HTTP/1.1[0m" 404 -
+2025-04-27 20:54:56,852 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:56] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__b15bf192_8db8_4442_a7ed_fc461ff37098__5 HTTP/1.1[0m" 404 -
+2025-04-27 20:54:59,040 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:59] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__88f7c2f1_5b6b_4032_a377_6ce61f4a9aaa__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:54:59,053 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:59] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__9983a1e4_9d93_4ad8_b33f_1813fe4f130b__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:54:59,067 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:59] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__9eee46b6_9f70_49a3_b41c_8356fb62071c__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:54:59,405 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:59] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__5a08f226_7119_4c47_b40c_2e5007dc766a__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:54:59,417 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:59] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__db7ece55_f43c_43f2_abaf_dd862e43845d__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:54:59,428 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:59] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__f649cff5_1841_4de5_aa59_f160c1406c25__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:54:59,590 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:59] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__3be58615_e884_47a5_92dc_1926ab73fdc2__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:54:59,600 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:59] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__ba46ffac_c4ec_4ba3_94c1_da24188bae57__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:54:59,616 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:59] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__8e9e7800_9fcd_4065_8d42_f437bb584eb9__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:54:59,790 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:59] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__ca81ee85_2df1_4f0c_9b3f_31a8d949f5a1__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:54:59,802 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:59] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__9bd61168_3d7c_44ef_ac8d_e94f56bdd3d6__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:54:59,818 - INFO - 127.0.0.1 - - [27/Apr/2025 20:54:59] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__efc0015f_41c7_474f_b9d7_59a8623af653__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:00,037 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:00] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__a799c594_65ca_4b9e_85f4_4cef0df3df07__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:00,049 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:00] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__048cdd32_27d9_4945_80ba_7ddde96b246a__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:00,059 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:00] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__8f63a6ca_d074_47da_a93d_a9d91ff4a92a__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:00,232 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:00] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__b2e6084b_49ff_44ba_9fd3_7910cc833fb9__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:00,244 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:00] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__e8a1dfe9_bd36_4504_ac4c_912eed5447e9__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:00,253 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:00] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__68d8b174_9044_454b_abed_437e38430614__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:01,398 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:01] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-27 20:55:43,533 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:43] "GET /api/health HTTP/1.1" 200 -
+2025-04-27 20:55:44,055 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:44] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__3d9d2357_eadd_4bff_8454_5c79e5dae05a__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:44,162 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:44] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__94efe369_b0cb_4a72_a1a1_a4c3c7a5612c__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:44,172 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:44] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__c2a2ceb6_966b_4d83_af86_8ac37365d013__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:44,200 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:44] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__5f52dab7_e252_4c3b_a877_ddb16bb9c2cc__3 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:44,211 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:44] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__2881fada_5988_48ac_84ba_9bb5f0aff8ea__4 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:44,225 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:44] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__fc22c627_5c3b_48e3_aba3_d8f06975b4b4__5 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:45,777 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:45] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__661312b4_39cb_4990_a910_1eadd6fff2a7__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:45,791 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:45] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__87561de2_60f7_4b64_8874_f780d2c08a31__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:45,808 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:45] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__b4f5ef6f_9fa2_4725_8179_81506795d39e__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:46,279 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:46] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__9567831e_2185_4d45_9095_d6e228dfc95a__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:46,319 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:46] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__46e355bb_ff38_4984_b1a3_9431f27f7853__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:46,361 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:46] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__50bf63d7_17da_4b76_b9dd_8ccd32be626e__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:46,600 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:46] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__f4448ac3_b023_4726_99ae_48d247cf461f__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:46,618 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:46] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__189a1fba_b4b4_4bb3_882f_afba03343ff0__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:46,633 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:46] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__a568594e_4a5f_45a9_a7ec_ccbd02443f7e__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:46,967 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:46] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__5e239d56_b32c_4dde_92ec_29dcabfbed65__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:46,980 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:46] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__6c1ad01e_877c_43f4_b541_001db5475433__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:46,998 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:46] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__c2712c94_e3a9_4383_a0b0_7191c9da80bd__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:47,199 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:47] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__19e44a1a_16b2_400f_b11f_c775ee071921__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:47,213 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:47] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__d4013527_79a0_4609_9e9f_76c0487ad4d7__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:47,227 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:47] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__2f55c514_4049_4ff7_9897_80bc866995a8__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:47,592 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:47] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__273f671a_894c_4394_8a6f_f662973dc733__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:47,627 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:47] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__1b8aa95e_edce_446f_be5c_b871dab254e9__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:55:47,644 - INFO - 127.0.0.1 - - [27/Apr/2025 20:55:47] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__439f242d_7729_44ca_a16e_2b0200100984__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:26,153 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:26] "[33mGET / HTTP/1.1[0m" 404 -
+2025-04-27 20:56:26,831 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:26] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__2a727f6a_4fea_4395_b3b2_ef1b797f71f5__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:26,929 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:26] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__6a2f566b_2a99_4157_98fb_acf22dde9742__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:26,941 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:26] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__c0c8dbdd_cfdb_4834_b59f_0f5fe9a20255__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:26,970 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:26] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__e43c3316_8d08_4347_a3c9_2ee9facbe938__3 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:26,980 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:26] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__b3126279_5679_4e8f_900d_8650f8d4077a__4 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:26,994 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:26] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__5580ab8a_97aa_4691_bd1d_fb7c4881c9ce__5 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:28,697 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:28] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__e24cd180_4182_43cc_8e63_2719454973d5__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:28,709 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:28] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__5117cf44_81be_4f6b_8bee_ef01c10c4fb8__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:28,726 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:28] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__09079e9d_1ffc_468f_ba81_25bdc33c2a5e__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:28,899 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:28] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__33c38e1a_92fd_4882_a8a6_01c40ff3dc49__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:28,914 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:28] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__a2bc810e_63f0_4bf5_8d79_17b431ff2b9d__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:28,929 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:28] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__2cd43c31_46da_4fac_ac9a_0086867579fe__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:29,251 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:29] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__62618423_ec79_4f86_b808_438cf564c92c__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:29,263 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:29] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__3b433524_15d9_4d94_9828_0b92963f75ea__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:29,277 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:29] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__61305344_110e_42a5_950f_bfceacb03ce7__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:29,439 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:29] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__37914e9f_3475_448e_9f60_5e7a73b65af2__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:29,453 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:29] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__0687871a_ec2a_4026_8025_835027b75aa0__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:29,471 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:29] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__bc65fb19_fb7a_4033_9531_af15377cbb7e__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:29,644 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:29] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__036946fa_cfe8_4a79_b610_537322157dac__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:29,657 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:29] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__58354032_aa27_44ff_bc1a_5522c5971298__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:29,718 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:29] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__a8dc243e_2a4e_4b2d_b120_f397d5936299__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:29,882 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:29] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__3db03790_6788_4d92_884e_755c4ded28b3__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:29,895 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:29] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__a07e8c8d_87ed_4378_b621_9b5d6b47ad6e__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:29,909 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:29] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__e61df6d3_238f_434a_b236_a5c70fcc3063__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:31,901 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:31] "[33mGET / HTTP/1.1[0m" 404 -
+2025-04-27 20:56:33,219 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:33] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__e3104311_eff4_473d_967b_427a5774964e__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:33,327 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:33] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__0a2f4b51_33e0_4381_96de_75e664dfba24__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:33,339 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:33] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__c248f73f_6972_40ef_b540_5cfb995b1039__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:33,604 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:33] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__6803f5fa_45ca_4d43_b1bd_54e321a505ea__3 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:33,615 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:33] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__a53348f5_a679_4939_b845_4cb6b99381e1__4 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:33,627 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:33] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__0fcde559_0238_42d9_b670_4cc7d20288ee__5 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:35,801 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:35] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__0316aa7d_fff7_448a_84ca_6b0c8aca5451__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:35,814 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:35] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__c11a1473_7c24_4c28_9e47_0ba318170c4c__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:35,830 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:35] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__ca13d849_772a_4e6a_85be_0f2573e87ac2__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:36,239 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__0e0c70b6_5859_4053_aeaf_e8ce3bd042b7__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:36,255 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__ecaaf05e_d689_47ec_8851_e323a86c2d88__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:36,276 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__51d97330_66be_4fb8_822a_31c00f3f5c38__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:36,475 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__d13618d9_e821_4d60_b4c2_a48ccbcab4a2__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:36,487 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__7b71f43e_bdbd_4462_8f3c_5ae970a43ad7__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:36,505 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__0744ae0d_5c95_4e87_8ba3_9a848400de26__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:36,666 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__808f8869_0804_45e9_9362_e5709ec651ef__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:36,680 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__e7188568_0eb2_4f68_b160_5a2ba1bfce71__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:36,694 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__a123e93e_9734_4d09_9d84_1d02982b05a0__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:36,856 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__3c3d1f91_bf3a_41c5_9d99_b7073c643989__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:36,869 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__f7663384_ea3c_4cde_b6b4_7d8d1850a1d6__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:36,882 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__504e66aa_67ed_475b_9ed2_640a74f8f235__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:37,045 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:37] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__fedf04bb_fa41_4943_8adb_beb4e2095357__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:37,058 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:37] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__d3948b7e_897e_49f6_a76f_be9157f78b88__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:37,074 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:37] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__04ac18c6_c77c_4469_b910_584ebe3eea7a__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:55,159 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:55] "[31m[1mGET /api/upload HTTP/1.1[0m" 405 -
+2025-04-27 20:56:55,461 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:55] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__98cde865_6669_473e_ae4f_6ef0d0820e1d__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:55,566 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:55] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__18aea4cb_e23f_4d65_9da1_8a8d94276c79__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:55,583 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:55] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__e870e084_db86_4851_84b2_45c6507466c5__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:55,606 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:55] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__e47d9a62_c62a_42f5_8b31_92bf9e27bd4d__3 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:55,619 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:55] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__37ac613d_e5f0_467c_8061_422f8d57e768__4 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:55,633 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:55] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__1b60d88f_79c4_48b4_b244_0aedeae590b1__5 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:57,092 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:57] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__756144b5_23c3_43ed_b59e_ff22c3c94ba1__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:57,101 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:57] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__394cbd62_5f1b_463a_b2d9_f3d8f60d959c__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:57,117 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:57] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__cfc41b30_1162_4bed_a856_820740042fd8__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:57,288 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:57] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__4c7509f7_9e1a_49c5_8912_7b9adaea78a3__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:57,306 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:57] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__6340b6b3_0dae_430f_b30b_1c052c4dc013__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:57,327 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:57] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__43aabceb_d90b_43ff_b469_0a263ae39c3e__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:57,485 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:57] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__cc13ccb4_4382_4aa4_9b1a_34bf1445dc69__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:57,497 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:57] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__5a60255f_0908_47c3_8c4e_1918b86f9c32__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:57,508 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:57] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__60ea71ab_4c38_4580_b5cd_36750ed0430a__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:57,673 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:57] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__3e4baa79_bfb6_4f8f_b888_ed8398f2ff7d__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:57,684 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:57] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__934d55b1_405b_497e_98dd_791b0b46a8bf__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:57,700 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:57] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__cf3c27c8_6587_4f49_aa0d_7034901de957__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:57,991 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:57] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__61d03241_f0a3_463a_8ec0_eef85c253b13__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:58,001 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:58] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__7f7ca43f_0a06_4420_b9b6_f184a6a98444__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:58,012 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:58] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__41a0bb51_56f7_49bc_821d_e939311c1e98__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:58,180 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:58] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__e9c1b11b_c934_432d_b11c_74a133198f12__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:58,195 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:58] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__f6e40c0e_ef0e_48fd_a20d_bd29658d2a66__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:56:58,211 - INFO - 127.0.0.1 - - [27/Apr/2025 20:56:58] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__524c99ab_4616_4248_8169_f46028307542__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:34,272 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:34] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__80cd1a01_d8a4_4401_858d_39f6f17d2df1__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:34,370 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:34] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__2510c3c7_4aef_4b8d_9fbe_0a317869d3f5__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:34,385 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:34] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__d551d3ae_a7a5_4272_a1af_4929ecb8f557__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:34,628 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:34] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__98a12d4c_882e_4eb3_b475_4f25c516ad6b__3 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:34,641 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:34] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__0469aede_b444_4ace_aeea_8105982bed62__4 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:34,652 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:34] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__c397f239_b0df_404f_b738_0ae2d2ea61b3__5 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:36,546 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__77fe3012_45a5_426b_9255_7b1625dc4ac4__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:36,557 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__8eabd26c_f19c_45a6_bd4f_b2c3f5a7c24d__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:36,572 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__bc498789_8a4d_4291_b5f7_6309657e209e__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:36,736 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__f38ccdbc_22ae_4a97_beee_14d1f775fe01__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:36,750 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__0654f5ee_d243_4fa7_8732_75451ced9c58__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:36,765 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:36] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__b9ffccbd_fabe_4038_88b8_3ede6432a862__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:37,124 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:37] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__3c0a6d9c_3971_4dc4_b846_01f714247146__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:37,135 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:37] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__9a2980c4_5579_4e63_af50_ed2a982d81e4__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:37,147 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:37] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__8875e40d_34ed_4eb5_82df_ef797636b935__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:37,311 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:37] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__eb15fe2a_abcb_4057_a73c_aab64c32fcb1__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:37,323 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:37] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__e70d0f74_f97f_4061_a624_da638496ffac__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:37,338 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:37] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__7256b2b3_8a8a_4abc_b6e6_a3b870eb4254__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:37,494 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:37] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__e7128d2f_4087_4627_9b7c_c82ae1317259__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:37,507 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:37] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__4158b8c0_b9ad_43ce_a7fe_52efec57f7c7__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:37,531 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:37] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__4957241e_e470_4cdf_a085_6d36a42f957f__2 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:37,691 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:37] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__e3015837_d10d_4d4d_b4db_45d4327c4678__0 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:37,705 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:37] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__8201970f_fb6c_44de_8c0b_8ba0db7444ad__1 HTTP/1.1[0m" 404 -
+2025-04-27 20:58:37,716 - INFO - 127.0.0.1 - - [27/Apr/2025 20:58:37] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__0b20861c_39e2_45c8_a192_bd5699fbe0ab__2 HTTP/1.1[0m" 404 -
+2025-04-27 21:00:08,690 - INFO - Starting Flask application
+2025-04-27 21:00:08,729 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-27 21:00:08,729 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-27 21:01:38,576 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:38] "GET / HTTP/1.1" 200 -
+2025-04-27 21:01:39,743 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:39] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__d8ff05d3_8a49_4112_ab96_8875d785be89__0 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:39,849 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:39] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__67a69daf_9161_468a_be03_fbe5422ab04f__1 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:39,862 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:39] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__8a42f98b_accd_4f99_8779_76b22fd144a0__2 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:40,117 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:40] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__b154bbb4_ceea_45a1_baa2_a752aca144f0__3 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:40,129 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:40] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__7e73e91b_c8d0_4fd9_a06e_a918e6547621__4 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:40,142 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:40] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__b405ca97_6e51_4c98_bae4_2c884abb165c__5 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:42,107 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:42] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__9e92cedb_d10a_44ca_8d49_95dd678a2b37__0 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:42,121 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:42] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__88602d5e_c4c1_4bf6_88fa_2cc14b6b0fca__1 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:42,133 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:42] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__34f12a17_3a87_4a18_a67c_4e15022da3a9__2 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:42,320 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:42] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__1791b736_c36e_455d_bcda_37d887703b79__0 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:42,332 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:42] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__887b0f57_1901_47a8_a09f_4168e759b302__1 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:42,351 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:42] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__65fdbd51_79b9_4ba4_9949_d0910c698b43__2 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:42,529 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:42] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__b37f91bb_5aa8_494d_bd5a_fc8c30f5466c__0 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:42,543 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:42] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__952d334f_7027_4316_9722_6929a00d64ba__1 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:42,562 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:42] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__c4ffa890_6150_413b_9c57_fbf1b9899004__2 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:46,092 - INFO - Received file upload request
+2025-04-27 21:01:46,094 - INFO - File saved successfully: uploads\restaurant_menu_optimization_data.csv
+2025-04-27 21:01:46,094 - ERROR - Error during file upload: analyze_features() got an unexpected keyword argument 'target_col'
+2025-04-27 21:01:46,095 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:46] "[35m[1mPOST /api/upload HTTP/1.1[0m" 500 -
+2025-04-27 21:01:47,354 - INFO - Received file upload request
+2025-04-27 21:01:47,356 - INFO - File saved successfully: uploads\restaurant_menu_optimization_data.csv
+2025-04-27 21:01:47,356 - ERROR - Error during file upload: analyze_features() got an unexpected keyword argument 'target_col'
+2025-04-27 21:01:47,357 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:47] "[35m[1mPOST /api/upload HTTP/1.1[0m" 500 -
+2025-04-27 21:01:48,495 - INFO - Received file upload request
+2025-04-27 21:01:48,497 - INFO - File saved successfully: uploads\restaurant_menu_optimization_data.csv
+2025-04-27 21:01:48,498 - ERROR - Error during file upload: analyze_features() got an unexpected keyword argument 'target_col'
+2025-04-27 21:01:48,498 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:48] "[35m[1mPOST /api/upload HTTP/1.1[0m" 500 -
+2025-04-27 21:01:51,221 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:51] "GET / HTTP/1.1" 200 -
+2025-04-27 21:01:51,770 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:51] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__eb1ca2d9_38a1_4a51_b11d_f5039457875a__0 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:51,871 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:51] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__ebb7f615_3633_44d3_8cc8_fb4fe41d69ac__1 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:51,883 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:51] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__b2f5eee6_f476_432e_a64b_e075ba957b51__2 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:51,912 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:51] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__b64c8f9c_5240_49f8_b7d9_3787729e989c__3 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:51,924 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:51] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__2cddffd5_a00f_4ebc_94b4_1efbf062ff80__4 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:51,938 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:51] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__a38be8e9_3ad1_40f5_a046_6e47d9660eaf__5 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:53,637 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:53] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__5ad84e9a_fd71_493f_a320_fe993c6e54e0__0 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:53,647 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:53] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__a291a2ca_00c2_4511_9ae7_19c24d8300e8__1 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:53,658 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:53] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__cc8d5160_3e34_4160_8077_cefabffce1e2__2 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:53,844 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:53] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__31e69d6b_7efa_40c9_919b_5727ffec8fe6__0 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:53,857 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:53] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__036d5130_0aa6_4875_9b40_dee1411664aa__1 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:53,871 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:53] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__c85b723a_64f4_474b_abaf_8805007fb49c__2 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:54,052 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:54] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__485bf5ec_1377_452e_aca2_4727222051a3__0 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:54,065 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:54] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__133cd18f_e48e_43cd_b269_1ecf255eb7e6__1 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:54,080 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:54] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__3dad9ae3_7d8b_4496_aece_b14c00c075d1__2 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:54,370 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:54] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__de8b40bf_91ef_43c7_9ced_9b7db02413cd__0 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:54,381 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:54] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__f57fdbd3_1b2e_4106_bca2_a46d9c16e3ae__1 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:54,392 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:54] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__2b250cad_6c50_4635_82bd_2840bf613536__2 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:54,558 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:54] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__c3d73a3e_12a0_4f32_94dd_5881fab5382f__0 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:54,571 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:54] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__1ad66184_cea1_4981_aaad_cfdaaed54b70__1 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:54,588 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:54] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__4444e013_074b_4bb8_b05c_f28f99f4131d__2 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:54,792 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:54] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__576481d2_4e17_4e94_b072_92e165458150__0 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:54,808 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:54] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__b130bf15_dbe5_4ce7_a242_c2e21adfb670__1 HTTP/1.1[0m" 404 -
+2025-04-27 21:01:54,828 - INFO - 127.0.0.1 - - [27/Apr/2025 21:01:54] "[33mGET /hybridaction/zybTrackerStatisticsAction?data={}&__callback__=__cb__zybTrackerStatisticsAction__9e126594_04cc_419a_8441_a2dc4b3555c8__2 HTTP/1.1[0m" 404 -
+2025-04-27 21:07:46,348 - INFO - Received file upload request
+2025-04-27 21:07:46,350 - INFO - File saved successfully: uploads\restaurant_menu_optimization_data.csv
+2025-04-27 21:07:46,350 - ERROR - Error during file upload: analyze_features() got an unexpected keyword argument 'target_col'
+2025-04-27 21:07:46,350 - INFO - 127.0.0.1 - - [27/Apr/2025 21:07:46] "[35m[1mPOST /api/upload HTTP/1.1[0m" 500 -
+2025-04-27 21:08:45,947 - INFO - Received file upload request
+2025-04-27 21:08:45,949 - INFO - File saved successfully: uploads\restaurant_menu_optimization_data.csv
+2025-04-27 21:08:45,949 - ERROR - Error during file upload: analyze_features() got an unexpected keyword argument 'target_col'
+2025-04-27 21:08:45,951 - INFO - 127.0.0.1 - - [27/Apr/2025 21:08:45] "[35m[1mPOST /api/upload HTTP/1.1[0m" 500 -
+2025-04-27 21:08:46,318 - INFO - Received file upload request
+2025-04-27 21:08:46,320 - INFO - File saved successfully: uploads\restaurant_menu_optimization_data.csv
+2025-04-27 21:08:46,320 - ERROR - Error during file upload: analyze_features() got an unexpected keyword argument 'target_col'
+2025-04-27 21:08:46,321 - INFO - 127.0.0.1 - - [27/Apr/2025 21:08:46] "[35m[1mPOST /api/upload HTTP/1.1[0m" 500 -
+2025-04-27 21:08:47,510 - INFO - Received file upload request
+2025-04-27 21:08:47,512 - INFO - File saved successfully: uploads\restaurant_menu_optimization_data.csv
+2025-04-27 21:08:47,513 - ERROR - Error during file upload: analyze_features() got an unexpected keyword argument 'target_col'
+2025-04-27 21:08:47,513 - INFO - 127.0.0.1 - - [27/Apr/2025 21:08:47] "[35m[1mPOST /api/upload HTTP/1.1[0m" 500 -
+2025-04-28 09:12:06,289 - INFO - Starting Flask application
+2025-04-28 09:12:06,307 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-28 09:12:06,307 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-28 09:12:24,196 - INFO - 127.0.0.1 - - [28/Apr/2025 09:12:24] "GET / HTTP/1.1" 200 -
+2025-04-28 09:12:24,261 - INFO - 127.0.0.1 - - [28/Apr/2025 09:12:24] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-28 09:15:52,555 - INFO - Received file upload request
+2025-04-28 09:15:52,556 - INFO - File saved successfully: uploads\Books data.csv
+2025-04-28 09:15:52,581 - INFO - Dataset loaded with shape: (40, 13)
+2025-04-28 09:15:52,582 - INFO - Data cleaning completed
+2025-04-28 09:15:58,517 - INFO - Removed uploaded file: uploads\Books data.csv
+2025-04-28 09:15:58,528 - INFO - 127.0.0.1 - - [28/Apr/2025 09:15:58] "POST /api/upload HTTP/1.1" 200 -
+2025-04-28 09:19:13,724 - INFO - Starting Flask application
+2025-04-28 09:19:13,743 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-28 09:19:13,743 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-28 09:19:32,567 - INFO - Received file upload request
+2025-04-28 09:19:32,570 - INFO - File saved successfully: uploads\Fortune 500 Companies US.csv
+2025-04-28 09:19:32,593 - INFO - Dataset loaded with shape: (500, 10)
+2025-04-28 09:19:32,594 - INFO - Data cleaning completed
+2025-04-28 09:19:59,609 - INFO - Removed uploaded file: uploads\Fortune 500 Companies US.csv
+2025-04-28 09:19:59,624 - INFO - 127.0.0.1 - - [28/Apr/2025 09:19:59] "POST /api/upload HTTP/1.1" 200 -
+2025-04-28 09:21:13 - INFO - Starting Flask application
+2025-04-28 09:21:13 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-28 09:21:13 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-28 09:21:31 - INFO - Received file upload request
+2025-04-28 09:21:31 - INFO - File saved successfully: uploads\Fortune 500 Companies US.csv
+2025-04-28 09:21:31 - INFO - Dataset loaded with shape: (500, 10)
+2025-04-28 09:21:31 - INFO - Starting data cleaning...
+2025-04-28 09:21:31 - INFO - Data cleaning completed successfully
+2025-04-28 09:21:31 - INFO - Data cleaning completed
+2025-04-28 09:21:55 - INFO - Analysis completed successfully
+2025-04-28 09:21:55 - INFO - Removed uploaded file: uploads\Fortune 500 Companies US.csv
+2025-04-28 09:21:55 - INFO - 127.0.0.1 - - [28/Apr/2025 09:21:55] "POST /api/upload HTTP/1.1" 200 -
+2025-04-28 09:26:03 - INFO - Received file upload request
+2025-04-28 09:26:03 - INFO - File saved successfully: uploads\Fortune 500 Companies US.csv
+2025-04-28 09:26:03 - INFO - Dataset loaded with shape: (500, 10)
+2025-04-28 09:26:03 - INFO - Starting data cleaning...
+2025-04-28 09:26:03 - INFO - Data cleaning completed successfully
+2025-04-28 09:26:03 - INFO - Data cleaning completed
+2025-04-28 09:26:36 - INFO - Analysis completed successfully
+2025-04-28 09:26:36 - INFO - Removed uploaded file: uploads\Fortune 500 Companies US.csv
+2025-04-28 09:26:36 - INFO - 127.0.0.1 - - [28/Apr/2025 09:26:36] "POST /api/upload HTTP/1.1" 200 -
+2025-04-28 09:38:59 - INFO - Received file upload request
+2025-04-28 09:38:59 - INFO - File saved successfully: uploads\indian_food.csv
+2025-04-28 09:38:59 - INFO - Dataset loaded with shape: (255, 9)
+2025-04-28 09:38:59 - INFO - Starting data cleaning...
+2025-04-28 09:38:59 - INFO - Data cleaning completed successfully
+2025-04-28 09:38:59 - INFO - Data cleaning completed
+2025-04-28 09:39:13 - INFO - Analysis completed successfully
+2025-04-28 09:39:13 - INFO - Removed uploaded file: uploads\indian_food.csv
+2025-04-28 09:39:13 - INFO - 127.0.0.1 - - [28/Apr/2025 09:39:13] "POST /api/upload HTTP/1.1" 200 -
+2025-04-28 09:52:35 - INFO - Received file upload request
+2025-04-28 09:52:35 - INFO - File saved successfully: uploads\Fortune 500 Companies US.csv
+2025-04-28 09:52:35 - INFO - Dataset loaded with shape: (500, 10)
+2025-04-28 09:52:35 - INFO - Starting data cleaning...
+2025-04-28 09:52:35 - INFO - Data cleaning completed successfully
+2025-04-28 09:52:35 - INFO - Data cleaning completed
+2025-04-28 09:53:11 - INFO - Analysis completed successfully
+2025-04-28 09:53:11 - INFO - Removed uploaded file: uploads\Fortune 500 Companies US.csv
+2025-04-28 09:53:11 - INFO - 127.0.0.1 - - [28/Apr/2025 09:53:11] "POST /api/upload HTTP/1.1" 200 -
+2025-04-28 10:29:59 - INFO - Received file upload request
+2025-04-28 10:29:59 - INFO - File saved successfully: uploads\indian_food.csv
+2025-04-28 10:29:59 - INFO - Dataset loaded with shape: (255, 9)
+2025-04-28 10:29:59 - INFO - Starting data cleaning...
+2025-04-28 10:29:59 - INFO - Data cleaning completed successfully
+2025-04-28 10:29:59 - INFO - Data cleaning completed
+2025-04-28 10:30:13 - INFO - Analysis completed successfully
+2025-04-28 10:30:13 - INFO - Removed uploaded file: uploads\indian_food.csv
+2025-04-28 10:30:14 - INFO - 127.0.0.1 - - [28/Apr/2025 10:30:14] "POST /api/upload HTTP/1.1" 200 -
+2025-04-28 10:33:31 - INFO - Starting Flask application
+2025-04-28 10:33:31 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-28 10:33:31 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-28 10:34:04 - INFO - Received file upload request
+2025-04-28 10:34:04 - INFO - File saved successfully: uploads\restaurant_menu_optimization_data.csv
+2025-04-28 10:34:04 - INFO - Dataset loaded with shape: (1000, 6)
+2025-04-28 10:34:04 - INFO - Starting data cleaning...
+2025-04-28 10:34:04 - INFO - Data cleaning completed successfully
+2025-04-28 10:34:04 - INFO - Data cleaning completed
+2025-04-28 10:34:05 - ERROR - Error analyzing features: Invalid color ((0.12156862745098039, 0.4666666666666667, 0.7058823529411765), (1.0, 0.4980392156862745, 0.054901960784313725), (0.17254901960784313, 0.6274509803921569, 0.17254901960784313))
+2025-04-28 10:34:05 - INFO - Analysis completed successfully
+2025-04-28 10:34:05 - INFO - Removed uploaded file: uploads\restaurant_menu_optimization_data.csv
+2025-04-28 10:34:05 - INFO - 127.0.0.1 - - [28/Apr/2025 10:34:05] "POST /api/upload HTTP/1.1" 200 -
+2025-04-28 10:34:09 - INFO - Received file upload request
+2025-04-28 10:34:09 - INFO - File saved successfully: uploads\restaurant_menu_optimization_data.csv
+2025-04-28 10:34:09 - INFO - Dataset loaded with shape: (1000, 6)
+2025-04-28 10:34:09 - INFO - Starting data cleaning...
+2025-04-28 10:34:09 - INFO - Data cleaning completed successfully
+2025-04-28 10:34:09 - INFO - Data cleaning completed
+2025-04-28 10:34:10 - ERROR - Error analyzing features: Invalid color ((0.12156862745098039, 0.4666666666666667, 0.7058823529411765), (1.0, 0.4980392156862745, 0.054901960784313725), (0.17254901960784313, 0.6274509803921569, 0.17254901960784313))
+2025-04-28 10:34:10 - INFO - Analysis completed successfully
+2025-04-28 10:34:10 - INFO - Removed uploaded file: uploads\restaurant_menu_optimization_data.csv
+2025-04-28 10:34:10 - INFO - 127.0.0.1 - - [28/Apr/2025 10:34:10] "POST /api/upload HTTP/1.1" 200 -
+2025-04-28 10:34:26 - INFO - Received file upload request
+2025-04-28 10:34:26 - INFO - File saved successfully: uploads\Tesla_dataset.csv
+2025-04-28 10:34:26 - INFO - Dataset loaded with shape: (3505, 7)
+2025-04-28 10:34:26 - INFO - Starting data cleaning...
+2025-04-28 10:34:26 - INFO - Data cleaning completed successfully
+2025-04-28 10:34:26 - INFO - Data cleaning completed
+2025-04-28 10:34:40 - INFO - Analysis completed successfully
+2025-04-28 10:34:40 - INFO - Removed uploaded file: uploads\Tesla_dataset.csv
+2025-04-28 10:34:40 - INFO - 127.0.0.1 - - [28/Apr/2025 10:34:40] "POST /api/upload HTTP/1.1" 200 -
+2025-04-28 10:38:56 - INFO - Received file upload request
+2025-04-28 10:38:56 - INFO - File saved successfully: uploads\World population growth rate by cities 2024.csv
+2025-04-28 10:38:56 - INFO - Dataset loaded with shape: (801, 6)
+2025-04-28 10:38:56 - INFO - Starting data cleaning...
+2025-04-28 10:38:56 - INFO - Data cleaning completed successfully
+2025-04-28 10:38:56 - INFO - Data cleaning completed
+2025-04-28 10:39:03 - INFO - Analysis completed successfully
+2025-04-28 10:39:03 - INFO - Removed uploaded file: uploads\World population growth rate by cities 2024.csv
+2025-04-28 10:39:03 - INFO - 127.0.0.1 - - [28/Apr/2025 10:39:03] "POST /api/upload HTTP/1.1" 200 -
+2025-04-28 10:39:54 - INFO - Received file upload request
+2025-04-28 10:39:54 - INFO - File saved successfully: uploads\World population growth rate by cities 2024.csv
+2025-04-28 10:39:54 - INFO - Dataset loaded with shape: (801, 6)
+2025-04-28 10:39:54 - INFO - Starting data cleaning...
+2025-04-28 10:39:54 - INFO - Data cleaning completed successfully
+2025-04-28 10:39:54 - INFO - Data cleaning completed
+2025-04-28 10:40:00 - INFO - Analysis completed successfully
+2025-04-28 10:40:00 - INFO - Removed uploaded file: uploads\World population growth rate by cities 2024.csv
+2025-04-28 10:40:00 - INFO - 127.0.0.1 - - [28/Apr/2025 10:40:00] "POST /api/upload HTTP/1.1" 200 -
+2025-04-28 13:05:43 - INFO - Starting Flask application
+2025-04-28 13:05:43 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-28 13:05:43 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-28 13:06:11 - INFO - Received file upload request
+2025-04-28 13:06:11 - INFO - File saved successfully: uploads\Books data.csv
+2025-04-28 13:06:11 - INFO - Dataset loaded with shape: (40, 13)
+2025-04-28 13:06:11 - INFO - Starting data cleaning...
+2025-04-28 13:06:11 - INFO - Data cleaning completed successfully
+2025-04-28 13:06:11 - INFO - Data cleaning completed
+2025-04-28 13:06:17 - INFO - Analysis completed successfully
+2025-04-28 13:06:17 - INFO - Removed uploaded file: uploads\Books data.csv
+2025-04-28 13:06:17 - INFO - 127.0.0.1 - - [28/Apr/2025 13:06:17] "POST /api/upload HTTP/1.1" 200 -
+2025-04-28 13:08:48 - INFO - Received file upload request
+2025-04-28 13:08:48 - INFO - File saved successfully: uploads\Books data.csv
+2025-04-28 13:08:48 - INFO - Dataset loaded with shape: (40, 13)
+2025-04-28 13:08:48 - INFO - Starting data cleaning...
+2025-04-28 13:08:48 - INFO - Data cleaning completed successfully
+2025-04-28 13:08:48 - INFO - Data cleaning completed
+2025-04-28 13:09:04 - INFO - Analysis completed successfully
+2025-04-28 13:09:04 - INFO - Removed uploaded file: uploads\Books data.csv
+2025-04-28 13:09:04 - INFO - 127.0.0.1 - - [28/Apr/2025 13:09:04] "POST /api/upload HTTP/1.1" 200 -
+2025-04-28 13:13:06 - INFO - Received file upload request
+2025-04-28 13:13:06 - INFO - File saved successfully: uploads\Books data.csv
+2025-04-28 13:13:06 - INFO - Dataset loaded with shape: (40, 13)
+2025-04-28 13:13:06 - INFO - Starting data cleaning...
+2025-04-28 13:13:06 - INFO - Data cleaning completed successfully
+2025-04-28 13:13:06 - INFO - Data cleaning completed
+2025-04-28 13:13:22 - INFO - Analysis completed successfully
+2025-04-28 13:13:22 - INFO - Removed uploaded file: uploads\Books data.csv
+2025-04-28 13:13:22 - INFO - 127.0.0.1 - - [28/Apr/2025 13:13:22] "POST /api/upload HTTP/1.1" 200 -
+2025-04-28 13:14:04 - INFO - Received file upload request
+2025-04-28 13:14:04 - INFO - File saved successfully: uploads\World population growth rate by cities 2024.csv
+2025-04-28 13:14:04 - INFO - Dataset loaded with shape: (801, 6)
+2025-04-28 13:14:04 - INFO - Starting data cleaning...
+2025-04-28 13:14:04 - INFO - Data cleaning completed successfully
+2025-04-28 13:14:04 - INFO - Data cleaning completed
+2025-04-28 13:14:18 - INFO - Analysis completed successfully
+2025-04-28 13:14:18 - INFO - Removed uploaded file: uploads\World population growth rate by cities 2024.csv
+2025-04-28 13:14:18 - INFO - 127.0.0.1 - - [28/Apr/2025 13:14:18] "POST /api/upload HTTP/1.1" 200 -

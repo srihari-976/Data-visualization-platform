@@ -1,18 +1,49 @@
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { 
+  Box, 
+  Button, 
+  Typography, 
+  CircularProgress, 
+  Alert, 
+  LinearProgress, 
+  Paper, 
+  Container,
+  Stepper,
+  Step,
+  StepLabel,
+  StepContent,
+  Chip,
+  useTheme,
+  Fade
+} from '@mui/material';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import DescriptionIcon from '@mui/icons-material/Description';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ErrorIcon from '@mui/icons-material/Error';
+import { firebaseService } from '../services/firebaseService';
+
+// Configure axios defaults
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL = 'http://127.0.0.1:5000';
 
 const UploadForm = () => {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [progress, setProgress] = useState(0);
+  const [status, setStatus] = useState('');
+  const [activeStep, setActiveStep] = useState(0);
   const navigate = useNavigate();
+  const theme = useTheme();
 
   const onDrop = useCallback((acceptedFiles) => {
     if (acceptedFiles.length > 0) {
       setFile(acceptedFiles[0]);
       setError(null);
+      setActiveStep(1);
     }
   }, []);
 
@@ -20,101 +51,346 @@ const UploadForm = () => {
     onDrop,
     accept: {
       'text/csv': ['.csv'],
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'],
-      'application/vnd.ms-excel': ['.xls']
+      'text/tab-separated-values': ['.tsv']
     },
-    multiple: false
+    maxFiles: 1,
+    maxSize: 500 * 1024 * 1024 // 500MB limit
   });
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!file) {
-      setError('Please select a file');
+      setError('Please select a file first');
       return;
     }
 
     setLoading(true);
     setError(null);
-
-    const formData = new FormData();
-    formData.append('file', file);
+    setProgress(0);
+    setStatus('Uploading dataset...');
+    setActiveStep(2);
 
     try {
-      const response = await axios.post('https://dataviz.sytes.net/api/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+      // Step 1: Upload to Firebase
+      setStatus('Storing dataset in Firebase...');
+      const datasetId = await firebaseService.storeDataset(file, {
+        originalName: file.name,
+        size: file.size,
+        type: file.type
+      }).catch(err => {
+        console.error('Firebase error:', err);
+        throw new Error(`Firebase error: ${err.message}`);
       });
+      setProgress(20);
 
-      // Store the response data in localStorage
-      localStorage.setItem('visualizationData', JSON.stringify(response.data));
-      navigate('/results');
+      // Step 2: Send to backend for processing
+      setStatus('Processing dataset...');
+      
+      // Create FormData and append the file
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('datasetId', datasetId);
+      
+      const response = await axios.post('/api/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        withCredentials: true,
+        crossDomain: true
+      }).catch(err => {
+        console.error('Backend error:', err);
+        if (err.response) {
+          throw new Error(`Backend error: ${err.response.data.error || err.message}`);
+        } else if (err.request) {
+          throw new Error('Could not connect to the backend server');
+        } else {
+          throw new Error(`Request error: ${err.message}`);
+        }
+      });
+      setProgress(40);
+
+      if (response.data.status === 'error') {
+        throw new Error(response.data.error);
+      }
+
+      // Step 3: Store cleaned dataset
+      setStatus('Storing cleaned dataset...');
+      await firebaseService.storeCleanedDataset(datasetId, response.data.data.cleaning_summary)
+        .catch(err => {
+          console.error('Firebase error:', err);
+          throw new Error(`Error storing cleaned dataset: ${err.message}`);
+        });
+      setProgress(60);
+
+      // Step 4: Store feature rankings
+      setStatus('Storing feature rankings...');
+      const featureRankings = response.data.data.feature_rankings || {};
+      await firebaseService.storeFeatureRankings(datasetId, {
+        rankings: featureRankings,
+        timestamp: new Date().toISOString()
+      }).catch(err => {
+        console.error('Firebase error:', err);
+        throw new Error(`Error storing feature rankings: ${err.message}`);
+      });
+      setProgress(80);
+
+      // Step 5: Store visualizations
+      setStatus('Generating visualizations...');
+      const visualizations = response.data.data.visualizations || {};
+      await firebaseService.storeVisualizations(datasetId, {
+        summary: visualizations.summary || {},
+        plots: visualizations.plots || {},
+        timestamp: new Date().toISOString()
+      }).catch(err => {
+        console.error('Firebase error:', err);
+        throw new Error(`Error storing visualizations: ${err.message}`);
+      });
+      setProgress(100);
+      setActiveStep(3);
+
+      // Wait a moment to show completion before navigating
+      setTimeout(() => {
+        // Navigate to results page and pass backend data in state
+        navigate(`/results/${datasetId}`, { state: { backendData: response.data.data } });
+      }, 1500);
     } catch (err) {
-      setError(err.response?.data?.error || 'An error occurred while uploading the file');
+      console.error('Processing error:', err);
+      setError(err.message || 'Error processing dataset');
+      setProgress(0);
+      setActiveStep(1); // Go back to file selection step
     } finally {
       setLoading(false);
     }
   };
 
+  const steps = [
+    {
+      label: 'Select File',
+      description: 'Drag and drop or select a CSV file to upload',
+    },
+    {
+      label: 'Review and Submit',
+      description: 'Verify your file and submit for processing',
+    },
+    {
+      label: 'Processing',
+      description: 'Your file is being analyzed...',
+    },
+    {
+      label: 'Complete',
+      description: 'Analysis complete!',
+    },
+  ];
+
+  const formatFileSize = (bytes) => {
+    if (bytes < 1024) return bytes + ' bytes';
+    else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+    else return (bytes / 1048576).toFixed(2) + ' MB';
+  };
+
   return (
-    <div className="max-w-xl mx-auto p-6">
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Upload Dataset</h2>
-        <form onSubmit={handleSubmit}>
-          <div
-            {...getRootProps()}
-            className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors
-              ${isDragActive ? 'border-primary-500 bg-primary-50' : 'border-gray-300 hover:border-primary-500'}`}
-          >
-            <input {...getInputProps()} />
-            {file ? (
-              <div>
-                <p className="text-sm text-gray-600">Selected file:</p>
-                <p className="text-sm font-medium text-gray-900">{file.name}</p>
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setFile(null);
-                  }}
-                  className="mt-2 text-sm text-red-600 hover:text-red-800"
-                >
-                  Remove file
-                </button>
-              </div>
-            ) : (
-              <div>
-                <p className="text-gray-600">
+    <Container maxWidth="md" sx={{ py: 6 }}>
+      <Typography 
+        variant="h3" 
+        component="h1" 
+        gutterBottom
+        sx={{ 
+          fontWeight: 700,
+          textAlign: 'center',
+          mb: 4,
+          background: `linear-gradient(45deg, ${theme.palette.primary.main} 30%, ${theme.palette.secondary.main} 90%)`,
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}
+      >
+        Upload Your Dataset
+      </Typography>
+
+      <Paper
+        elevation={3}
+        sx={{
+          p: 4,
+          borderRadius: 2,
+          position: 'relative',
+          overflow: 'hidden'
+        }}
+      >
+        <Stepper activeStep={activeStep} orientation="vertical" sx={{ mb: 4 }}>
+          {steps.map((step, index) => (
+            <Step key={step.label}>
+              <StepLabel>
+                <Typography variant="subtitle1" fontWeight={500}>
+                  {step.label}
+                </Typography>
+              </StepLabel>
+              <StepContent>
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                  {step.description}
+                </Typography>
+              </StepContent>
+            </Step>
+          ))}
+        </Stepper>
+
+        {activeStep === 0 && (
+          <Fade in={activeStep === 0}>
+            <Box>
+              <Box
+                {...getRootProps()}
+                sx={{
+                  border: '2px dashed',
+                  borderRadius: 2,
+                  borderColor: isDragActive ? 'primary.main' : 'grey.300',
+                  p: 6,
+                  textAlign: 'center',
+                  cursor: 'pointer',
+                  mb: 3,
+                  transition: 'all 0.2s',
+                  backgroundColor: isDragActive ? 'action.hover' : 'transparent',
+                  '&:hover': {
+                    borderColor: 'primary.main',
+                    backgroundColor: 'action.hover'
+                  }
+                }}
+              >
+                <input {...getInputProps()} />
+                <CloudUploadIcon sx={{ fontSize: 64, color: 'primary.main', mb: 2 }} />
+                <Typography variant="h6" gutterBottom>
                   {isDragActive
-                    ? 'Drop the file here'
-                    : 'Drag and drop a file here, or click to select'}
-                </p>
-                <p className="text-sm text-gray-500 mt-2">
-                  Supported formats: CSV, Excel (.xlsx, .xls)
-                </p>
-              </div>
-            )}
-          </div>
+                    ? 'Drop the CSV file here'
+                    : 'Drag and drop a CSV file here'}
+                </Typography>
+                <Typography color="text.secondary" sx={{ mb: 2 }}>
+                  Or click to browse files
+                </Typography>
+                <Chip 
+                  label="CSV and TSV files only (max 500MB)" 
+                  size="small" 
+                  variant="outlined" 
+                  color="primary" 
+                />
+              </Box>
+            </Box>
+          </Fade>
+        )}
 
-          {error && (
-            <div className="mt-4 p-3 bg-red-100 text-red-700 rounded-md">
-              {error}
-            </div>
-          )}
+        {activeStep === 1 && file && (
+          <Fade in={activeStep === 1}>
+            <Box sx={{ textAlign: 'center', mb: 3 }}>
+              <Box 
+                sx={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  p: 3,
+                  mb: 3,
+                  border: '1px solid',
+                  borderColor: 'divider',
+                  borderRadius: 2,
+                  backgroundColor: 'background.paper',
+                }}
+              >
+                <DescriptionIcon sx={{ fontSize: 40, color: 'primary.light', mr: 2 }} />
+                <Box sx={{ textAlign: 'left' }}>
+                  <Typography variant="subtitle1" fontWeight={600}>
+                    {file.name}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {formatFileSize(file.size)}
+                  </Typography>
+                </Box>
+              </Box>
+              
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleSubmit}
+                disabled={loading}
+                size="large"
+                sx={{ 
+                  px: 4, 
+                  py: 1.5, 
+                  borderRadius: 2,
+                  background: `linear-gradient(45deg, ${theme.palette.primary.main} 30%, ${theme.palette.secondary.main} 90%)`,
+                }}
+              >
+                Process Dataset
+              </Button>
+            </Box>
+          </Fade>
+        )}
 
-          <button
-            type="submit"
-            disabled={loading || !file}
-            className={`mt-6 w-full py-2 px-4 rounded-md text-white font-medium
-              ${loading || !file
-                ? 'bg-primary-400 cursor-not-allowed'
-                : 'bg-primary-600 hover:bg-primary-700'}`}
+        {activeStep === 2 && loading && (
+          <Fade in={activeStep === 2}>
+            <Box sx={{ width: '100%', mb: 3, textAlign: 'center' }}>
+              <CircularProgress 
+                size={80} 
+                thickness={4} 
+                sx={{ mb: 4 }} 
+                variant="determinate" 
+                value={progress} 
+              />
+              <Box sx={{ position: 'relative', display: 'inline-block' }}>
+                <Typography 
+                  variant="h6" 
+                  sx={{ 
+                    position: 'absolute', 
+                    top: -56, 
+                    left: '50%', 
+                    transform: 'translateX(-50%)'
+                  }}
+                >
+                  {`${Math.round(progress)}%`}
+                </Typography>
+              </Box>
+              
+              <Typography variant="h6" color="primary" gutterBottom>
+                {status}
+              </Typography>
+              
+              <LinearProgress 
+                variant="determinate" 
+                value={progress} 
+                sx={{ 
+                  height: 10, 
+                  borderRadius: 5,
+                  mb: 2
+                }} 
+              />
+              
+              <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                Please don't close this window while processing
+              </Typography>
+            </Box>
+          </Fade>
+        )}
+
+        {activeStep === 3 && (
+          <Fade in={activeStep === 3}>
+            <Box sx={{ textAlign: 'center', my: 3 }}>
+              <CheckCircleIcon sx={{ fontSize: 80, color: 'success.main', mb: 2 }} />
+              <Typography variant="h5" gutterBottom color="success.main" fontWeight={600}>
+                Analysis Complete!
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Redirecting to results page...
+              </Typography>
+            </Box>
+          </Fade>
+        )}
+
+        {error && (
+          <Alert 
+            severity="error" 
+            sx={{ mt: 3 }}
+            icon={<ErrorIcon fontSize="inherit" />}
           >
-            {loading ? 'Processing...' : 'Upload and Analyze'}
-          </button>
-        </form>
-      </div>
-    </div>
+            <Typography variant="subtitle2">{error}</Typography>
+          </Alert>
+        )}
+      </Paper>
+    </Container>
   );
 };
 
