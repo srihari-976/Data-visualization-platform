@@ -1,6 +1,11 @@
+
 # AI-Powered Data Visualization Platform
 
 A modern web application that automatically generates insightful visualizations from uploaded datasets using AI and machine learning techniques.
+
+## Live Demo
+
+Access the live application here: [data-visualization-platform.vercel.app](https://data-visualization-platform.vercel.app/)
 
 ## Features
 
@@ -14,6 +19,7 @@ A modern web application that automatically generates insightful visualizations 
 ## Tech Stack
 
 ### Backend
+
 - Python/Flask
 - Pandas
 - NumPy
@@ -22,6 +28,7 @@ A modern web application that automatically generates insightful visualizations 
 - Plotly
 
 ### Frontend
+
 - React
 - TailwindCSS
 - Plotly.js
@@ -32,38 +39,43 @@ A modern web application that automatically generates insightful visualizations 
 ### Backend Setup
 
 1. Create a virtual environment:
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
+
+   ```bash
+   cd backend
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
 
 2. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 3. Run the Flask server:
-```bash
-python main.py
-```
 
-The backend server will start at `http://localhost:5000`
+   ```bash
+   python main.py
+   ```
+
+   The backend server will start at `http://localhost:5000`
 
 ### Frontend Setup
 
 1. Install dependencies:
-```bash
-cd frontend
-npm install
-```
+
+   ```bash
+   cd frontend
+   npm install
+   ```
 
 2. Start the development server:
-```bash
-npm run dev
-```
 
-The frontend application will start at `http://localhost:5173`
+   ```bash
+   npm run dev
+   ```
+
+   The frontend application will start at `http://localhost:5173`
 
 ## Usage
 
@@ -77,28 +89,26 @@ The frontend application will start at `http://localhost:5173`
 
 ```
 data-viz-platform/
-│── backend/                   # Flask Backend
+├── backend/                   # Flask Backend
 │   ├── static/                # Stores generated plots
 │   ├── uploads/               # Stores uploaded datasets
 │   ├── models/                # Deep learning models
 │   ├── main.py                # Flask API entry point
 │   ├── requirements.txt       # Python dependencies
-│   ├── utils/                 # Helper functions
+│   └── utils/                 # Helper functions
 │       ├── data_cleaning.py   # Data cleaning functions
 │       ├── feature_selection.py # Feature selection
 │       └── visualization.py   # Plot generation
-│
-│── frontend/                  # React Frontend
+├── frontend/                  # React Frontend
 │   ├── public/                # Static files
 │   ├── src/                   # React source files
 │   │   ├── components/        # UI Components
-│   │   ├── pages/            # App Pages
-│   │   ├── App.jsx           # Main app component
-│   │   └── main.jsx          # Entry point
-│   ├── package.json          # Dependencies
-│   └── tailwind.config.js    # TailwindCSS config
-│
-│── README.md                  # Documentation
+│   │   ├── pages/             # App Pages
+│   │   ├── App.jsx            # Main app component
+│   │   └── main.jsx           # Entry point
+│   ├── package.json           # Dependencies
+│   └── tailwind.config.js     # TailwindCSS config
+└── README.md                  # Documentation
 ```
 
 ## Contributing
@@ -108,7 +118,3 @@ data-viz-platform/
 3. Commit your changes
 4. Push to the branch
 5. Create a new Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details. 
