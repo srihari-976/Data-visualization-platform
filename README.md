@@ -5,7 +5,8 @@ A modern web application that automatically generates insightful visualizations 
 
 ## Live Demo
 
-Access the live application here: [data-visualization-platform.vercel.app](https://data-visualization-platform.vercel.app/)
+Access the live application here: 
+[![Live Application](https://img.shields.io/badge/Live%20Application-Click%20Here-brightgreen)](https://github.com/srihari-976/Data-visualization-platform)
 
 ## Features
 
