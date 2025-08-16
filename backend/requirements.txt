@@ -13,3 +13,4 @@ scipy>=1.7.0
 statsmodels>=0.13.0
 yellowbrick>=1.5
 mlxtend>=0.21.0 
+gunicorn
