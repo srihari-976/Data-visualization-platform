@@ -27,7 +27,7 @@ import { firebaseService } from '../services/firebaseService';
 
 // Configure axios defaults
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = 'https://data-visualization-platform.onrender.com';
+axios.defaults.baseURL = 'https://dataviz-production.up.railway.app/';
 
 const UploadForm = () => {
   const [file, setFile] = useState(null);
