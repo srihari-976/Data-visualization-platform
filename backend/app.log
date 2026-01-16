@@ -435,3 +435,320 @@
 2025-04-28 10:40:00 - INFO - Analysis completed successfully
 2025-04-28 10:40:00 - INFO - Removed uploaded file: uploads\World population growth rate by cities 2024.csv
 2025-04-28 10:40:00 - INFO - 127.0.0.1 - - [28/Apr/2025 10:40:00] "POST /api/upload HTTP/1.1" 200 -
+2026-01-15 12:02:14 - INFO - Starting DataViz AI Flask application
+2026-01-15 12:02:13 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-15 12:02:13 - INFO - [33mPress CTRL+C to quit[0m
+2026-01-15 14:53:17 - INFO - Starting DataViz AI Flask application
+2026-01-15 14:53:17 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-15 14:53:17 - INFO - [33mPress CTRL+C to quit[0m
+2026-01-15 14:54:33 - INFO - Received file upload request
+2026-01-15 14:54:33 - INFO - File saved successfully: uploads/loan_data_set.csv
+2026-01-15 14:54:33 - INFO - Dataset loaded with shape: (614, 13)
+2026-01-15 14:54:33 - INFO - Starting data cleaning...
+2026-01-15 14:54:33 - INFO - Data cleaning completed successfully
+2026-01-15 14:54:33 - INFO - Data cleaning completed
+2026-01-15 14:54:38 - ERROR - Error analyzing features: Invalid color ((0.12156862745098039, 0.4666666666666667, 0.7058823529411765), (1.0, 0.4980392156862745, 0.054901960784313725), (0.17254901960784313, 0.6274509803921569, 0.17254901960784313), (0.8392156862745098, 0.15294117647058825, 0.1568627450980392))
+2026-01-15 14:54:38 - INFO - Analysis completed successfully
+2026-01-15 14:54:38 - INFO - Removed uploaded file: uploads/loan_data_set.csv
+2026-01-15 14:54:38 - INFO - 127.0.0.1 - - [15/Jan/2026 14:54:38] "POST /api/upload HTTP/1.1" 200 -
+2026-01-15 14:57:23 - INFO - Starting DataViz AI Flask application
+2026-01-15 14:57:23 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-15 14:57:23 - INFO - [33mPress CTRL+C to quit[0m
+2026-01-15 14:59:01 - INFO - Received file upload request
+2026-01-15 14:59:01 - INFO - File saved successfully: uploads/loan_data_set.csv
+2026-01-15 14:59:01 - INFO - Dataset loaded with shape: (614, 13)
+2026-01-15 14:59:01 - INFO - Starting data cleaning...
+2026-01-15 14:59:01 - INFO - Data cleaning completed successfully
+2026-01-15 14:59:01 - INFO - Data cleaning completed
+2026-01-15 14:59:08 - INFO - Analysis completed successfully
+2026-01-15 14:59:08 - INFO - Removed uploaded file: uploads/loan_data_set.csv
+2026-01-15 14:59:08 - INFO - 127.0.0.1 - - [15/Jan/2026 14:59:08] "POST /api/upload HTTP/1.1" 200 -
+2026-01-15 15:00:46 - INFO - 127.0.0.1 - - [15/Jan/2026 15:00:46] "OPTIONS /api/query HTTP/1.1" 200 -
+2026-01-15 15:00:46 - WARNING - Required packages not installed: No module named 'torch'. Using rule-based fallback.
+2026-01-15 15:00:46 - INFO - 127.0.0.1 - - [15/Jan/2026 15:00:46] "POST /api/query HTTP/1.1" 200 -
+2026-01-15 15:01:04 - INFO - 127.0.0.1 - - [15/Jan/2026 15:01:04] "OPTIONS /api/query HTTP/1.1" 200 -
+2026-01-15 15:01:04 - INFO - 127.0.0.1 - - [15/Jan/2026 15:01:04] "POST /api/query HTTP/1.1" 200 -
+2026-01-15 15:03:39 - INFO - Starting DataViz AI Flask application
+2026-01-15 15:03:39 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-15 15:03:39 - INFO - [33mPress CTRL+C to quit[0m
+2026-01-15 15:06:50 - INFO - 127.0.0.1 - - [15/Jan/2026 15:06:50] "OPTIONS /api/query HTTP/1.1" 200 -
+2026-01-15 15:06:50 - WARNING - Required packages not installed: No module named 'torch'. Using rule-based fallback.
+2026-01-15 15:06:50 - INFO - 127.0.0.1 - - [15/Jan/2026 15:06:50] "POST /api/query HTTP/1.1" 200 -
+2026-01-15 15:09:38 - INFO - 127.0.0.1 - - [15/Jan/2026 15:09:38] "GET /api/llm-status HTTP/1.1" 200 -
+2026-01-15 15:11:44 - INFO - Starting DataViz AI Flask application
+2026-01-15 15:11:44 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-15 15:11:44 - INFO - [33mPress CTRL+C to quit[0m
+2026-01-15 15:11:56 - WARNING - Groq API key not set. Using enhanced rule-based fallback.
+2026-01-15 15:11:56 - INFO - To enable LLM: set GROQ_API_KEY environment variable
+2026-01-15 15:11:56 - INFO - Get free API key at: https://console.groq.com
+2026-01-15 15:11:56 - INFO - 127.0.0.1 - - [15/Jan/2026 15:11:56] "GET /api/llm-status HTTP/1.1" 200 -
+2026-01-15 15:11:56 - INFO - 127.0.0.1 - - [15/Jan/2026 15:11:56] "POST /api/query HTTP/1.1" 200 -
+2026-01-15 15:12:07 - INFO - 127.0.0.1 - - [15/Jan/2026 15:12:07] "POST /api/query HTTP/1.1" 200 -
+2026-01-15 15:12:07 - INFO - 127.0.0.1 - - [15/Jan/2026 15:12:07] "POST /api/query HTTP/1.1" 200 -
+2026-01-15 15:39:33 - INFO - 127.0.0.1 - - [15/Jan/2026 15:39:33] "OPTIONS /api/query HTTP/1.1" 200 -
+2026-01-15 15:39:31 - INFO - 127.0.0.1 - - [15/Jan/2026 15:39:31] "POST /api/query HTTP/1.1" 200 -
+2026-01-15 15:40:04 - INFO - Received file upload request
+2026-01-15 15:40:04 - INFO - File saved successfully: uploads/loan_data_set.csv
+2026-01-15 15:40:04 - INFO - Dataset loaded with shape: (614, 13)
+2026-01-15 15:40:04 - INFO - Starting data cleaning...
+2026-01-15 15:40:04 - INFO - Data cleaning completed successfully
+2026-01-15 15:40:04 - INFO - Data cleaning completed
+2026-01-15 15:40:09 - INFO - Analysis completed successfully
+2026-01-15 15:40:09 - INFO - Removed uploaded file: uploads/loan_data_set.csv
+2026-01-15 15:40:09 - INFO - 127.0.0.1 - - [15/Jan/2026 15:40:09] "POST /api/upload HTTP/1.1" 200 -
+2026-01-15 16:08:39 - INFO - Starting DataViz AI Flask application
+2026-01-15 16:12:56 - INFO - Starting DataViz AI Flask application
+2026-01-15 16:12:56 - WARNING - GROQ_API_KEY not set. Using template-based fallback.
+2026-01-15 16:12:56 - INFO - Get free API key at: https://console.groq.com
+2026-01-15 16:12:56 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-15 16:12:56 - INFO - [33mPress CTRL+C to quit[0m
+2026-01-15 16:13:05 - INFO - 127.0.0.1 - - [15/Jan/2026 16:13:05] "GET /api/llm-status HTTP/1.1" 200 -
+2026-01-15 16:13:05 - INFO - 127.0.0.1 - - [15/Jan/2026 16:13:05] "GET /api/health HTTP/1.1" 200 -
+2026-01-15 16:20:19 - INFO - 127.0.0.1 - - [15/Jan/2026 16:20:19] "GET /api/llm-status HTTP/1.1" 200 -
+2026-01-15 16:20:20 - INFO - 127.0.0.1 - - [15/Jan/2026 16:20:20] "GET /api/health HTTP/1.1" 200 -
+2026-01-15 16:38:08 - INFO - Starting DataViz AI Flask application
+2026-01-15 16:38:08 - INFO - CUDA available: NVIDIA GeForce RTX 3050 Laptop GPU (4.3GB)
+2026-01-15 16:38:08 - INFO - Loading meta-llama/Llama-3.2-1B-Instruct...
+2026-01-15 16:38:09 - ERROR - Error loading model: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct.
+401 Client Error. (Request ID: Root=1-696917f1-42ad9c670729f3e06c7345e7;5c357728-61e0-457a-98b5-890427eecd5f)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-1B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+2026-01-15 16:38:09 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-15 16:38:09 - INFO - [33mPress CTRL+C to quit[0m
+2026-01-15 16:43:05 - INFO - Starting DataViz AI Flask application
+2026-01-15 16:43:05 - INFO - CUDA available: NVIDIA GeForce RTX 3050 Laptop GPU (4.3GB)
+2026-01-15 16:43:05 - INFO - Loading meta-llama/Llama-3.1-3B-Instruct...
+2026-01-15 16:43:06 - ERROR - Error loading model: meta-llama/Llama-3.1-3B-Instruct is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your_token>`
+2026-01-15 16:43:06 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-15 16:43:06 - INFO - [33mPress CTRL+C to quit[0m
+2026-01-15 16:45:48 - INFO - Starting DataViz AI Flask application
+2026-01-15 16:45:48 - INFO - CUDA available: NVIDIA GeForce RTX 3050 Laptop GPU (4.3GB)
+2026-01-15 16:45:48 - INFO - Loading meta-llama/Llama-3.2-3B-Instruct...
+2026-01-15 16:45:48 - ERROR - Error loading model: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-696919bb-15490506402e916c5b40f2e4;f00ad267-f754-4673-86f8-b051ad20acf4)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+2026-01-15 16:45:49 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-15 16:45:49 - INFO - [33mPress CTRL+C to quit[0m
+2026-01-15 16:47:35 - INFO - Starting DataViz AI Flask application
+2026-01-15 16:47:35 - INFO - CUDA available: NVIDIA GeForce RTX 3050 Laptop GPU (4.3GB)
+2026-01-15 16:47:35 - INFO - Loading meta-llama/Llama-3.2-3B-Instruct...
+2026-01-15 16:48:51 - ERROR - Error loading model: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-69691a72-5bbf51a96d88b7de085b2980;bd9c06c5-8015-41e9-9829-252054e97302)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/0cb88a4f764b7a12671c53f0838cd831a0843b95/model-00001-of-00002.safetensors.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+2026-01-15 16:48:51 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-15 16:48:51 - INFO - [33mPress CTRL+C to quit[0m
+2026-01-15 16:50:44 - INFO - Starting DataViz AI Flask application
+2026-01-15 16:50:44 - INFO - CUDA available: NVIDIA GeForce RTX 3050 Laptop GPU (4.3GB)
+2026-01-15 16:50:44 - INFO - Loading Qwen/Qwen2.5-1.5B-Instruct...
+2026-01-15 16:57:58 - INFO - Starting DataViz AI Flask application
+2026-01-15 16:57:58 - INFO - CUDA available: NVIDIA GeForce RTX 3050 Laptop GPU (4.3GB)
+2026-01-15 16:57:58 - INFO - Loading meta-llama/Llama-3.2-3B-Instruct...
+2026-01-15 16:58:40 - ERROR - Error loading model: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-69691cc0-48efd6831b47c3cb232126ee;949bfa9d-096a-4e22-82b1-001763b09bc2)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/0cb88a4f764b7a12671c53f0838cd831a0843b95/model-00001-of-00002.safetensors.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+2026-01-15 16:58:40 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-15 16:58:40 - INFO - [33mPress CTRL+C to quit[0m
+2026-01-16 11:05:23 - INFO - Starting DataViz AI Flask application
+2026-01-16 11:05:24 - INFO - CUDA available: NVIDIA GeForce RTX 3050 Laptop GPU (4.3GB)
+2026-01-16 11:06:35 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2026-01-16 11:07:17 - INFO - Model loaded successfully!
+2026-01-16 11:07:17 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-16 11:07:17 - INFO - [33mPress CTRL+C to quit[0m
+2026-01-16 11:38:12 - INFO - Starting DataViz AI Flask application
+2026-01-16 11:38:12 - INFO - CUDA available: NVIDIA GeForce RTX 3050 Laptop GPU (4.3GB)
+2026-01-16 11:38:40 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2026-01-16 11:39:18 - INFO - Model loaded successfully!
+2026-01-16 11:39:18 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-16 11:39:18 - INFO - [33mPress CTRL+C to quit[0m
+2026-01-16 11:55:32 - INFO - Received file upload request
+2026-01-16 11:55:32 - INFO - File saved: uploads/25422285.csv
+2026-01-16 11:55:40 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-01-16 11:55:40 - INFO - Loading SentenceTransformer model...
+2026-01-16 11:55:40 - INFO - Use pytorch device_name: cuda:0
+2026-01-16 11:55:40 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-16 11:55:53 - WARNING - '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: da6ac7c1-5aea-49ce-b40b-c68bd6cd9851)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./config_sentence_transformers.json
+2026-01-16 11:55:53 - WARNING - Retrying in 1s [Retry 1/5].
+2026-01-16 11:56:04 - WARNING - '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 187b8492-ecfb-44e6-9fe5-a382776e2dd1)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./README.md
+2026-01-16 11:56:04 - WARNING - Retrying in 1s [Retry 1/5].
+2026-01-16 11:56:18 - WARNING - '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 6b282595-a06b-4fd1-b12a-c155fda1213e)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2026-01-16 11:56:18 - WARNING - Retrying in 1s [Retry 1/5].
+2026-01-16 11:56:28 - WARNING - '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 43f03254-87fe-497d-b494-33c1eec802ba)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./sentence_bert_config.json
+2026-01-16 11:56:28 - WARNING - Retrying in 1s [Retry 1/5].
+2026-01-16 11:56:45 - WARNING - '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 75078248-89d1-4a82-8bd1-1c9eca5fac57)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json
+2026-01-16 11:56:45 - WARNING - Retrying in 1s [Retry 1/5].
+2026-01-16 11:56:56 - WARNING - '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 466cdc19-6cf1-41dc-be28-10cadb09e920)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json
+2026-01-16 11:56:56 - WARNING - Retrying in 2s [Retry 2/5].
+2026-01-16 11:57:09 - WARNING - '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 7e08c7ab-cff3-483f-8c8f-3a4249fd7bd8)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json
+2026-01-16 11:57:09 - WARNING - Retrying in 1s [Retry 1/5].
+2026-01-16 11:57:11 - INFO - RAG Service initialized successfully
+2026-01-16 11:57:11 - INFO - Processing schema for dataset 25422285
+2026-01-16 11:57:12 - INFO - Successfully stored 3 schema chunks for dataset 25422285
+2026-01-16 11:57:12 - INFO - Dataset loaded with shape: (614, 13)
+2026-01-16 11:57:12 - INFO - Starting data cleaning...
+2026-01-16 11:57:12 - INFO - Data cleaning completed successfully
+2026-01-16 11:57:12 - INFO - Data cleaning completed
+2026-01-16 11:57:21 - INFO - Analysis completed for dataset 25422285
+2026-01-16 11:57:21 - INFO - 127.0.0.1 - - [16/Jan/2026 11:57:21] "POST /api/upload HTTP/1.1" 200 -
+2026-01-16 11:59:45 - INFO - 127.0.0.1 - - [16/Jan/2026 11:59:45] "OPTIONS /api/query HTTP/1.1" 200 -
+2026-01-16 11:59:45 - INFO - Processing query: Approval Rate by Gender for dataset: 
+2026-01-16 11:59:45 - INFO - 127.0.0.1 - - [16/Jan/2026 11:59:45] "POST /api/query HTTP/1.1" 200 -
+2026-01-16 12:03:41 - INFO - Received file upload request
+2026-01-16 12:03:41 - INFO - File saved: uploads/d7a42085.csv
+2026-01-16 12:03:48 - INFO - Processing schema for dataset d7a42085
+2026-01-16 12:03:48 - INFO - Successfully stored 3 schema chunks for dataset d7a42085
+2026-01-16 12:03:48 - INFO - Dataset loaded with shape: (614, 13)
+2026-01-16 12:03:48 - INFO - Starting data cleaning...
+2026-01-16 12:03:48 - INFO - Data cleaning completed successfully
+2026-01-16 12:03:48 - INFO - Data cleaning completed
+2026-01-16 12:03:56 - INFO - Analysis completed for dataset d7a42085
+2026-01-16 12:03:56 - INFO - 127.0.0.1 - - [16/Jan/2026 12:03:56] "POST /api/upload HTTP/1.1" 200 -
+2026-01-16 12:04:23 - INFO - 127.0.0.1 - - [16/Jan/2026 12:04:23] "OPTIONS /api/query HTTP/1.1" 200 -
+2026-01-16 12:04:24 - INFO - Processing query: Approval Rate by Gender for dataset: 1768565021416
+2026-01-16 12:04:24 - INFO - 127.0.0.1 - - [16/Jan/2026 12:04:24] "POST /api/query HTTP/1.1" 200 -
+2026-01-16 12:07:20 - INFO - Starting DataViz AI Flask application
+2026-01-16 12:07:21 - INFO - CUDA available: NVIDIA GeForce RTX 3050 Laptop GPU (4.3GB)
+2026-01-16 12:07:48 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2026-01-16 12:08:29 - INFO - Model loaded successfully!
+2026-01-16 12:08:29 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-01-16 12:08:29 - INFO - [33mPress CTRL+C to quit[0m
+2026-01-16 12:09:08 - INFO - Received file upload request
+2026-01-16 12:09:08 - INFO - File saved: uploads/1768565347876.csv
+2026-01-16 12:09:16 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-01-16 12:09:16 - INFO - Loading SentenceTransformer model...
+2026-01-16 12:09:16 - INFO - Use pytorch device_name: cuda:0
+2026-01-16 12:09:16 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-16 12:09:37 - INFO - RAG Service initialized successfully
+2026-01-16 12:09:37 - INFO - Processing schema for dataset 1768565347876
+2026-01-16 12:09:38 - INFO - Successfully stored 3 schema chunks for dataset 1768565347876
+2026-01-16 12:09:38 - INFO - Dataset loaded with shape: (614, 13)
+2026-01-16 12:09:38 - INFO - Starting data cleaning...
+2026-01-16 12:09:38 - INFO - Data cleaning completed successfully
+2026-01-16 12:09:38 - INFO - Data cleaning completed
+2026-01-16 12:09:48 - INFO - Analysis completed for dataset 1768565347876
+2026-01-16 12:09:48 - INFO - 127.0.0.1 - - [16/Jan/2026 12:09:48] "POST /api/upload HTTP/1.1" 200 -
+2026-01-16 12:10:02 - INFO - 127.0.0.1 - - [16/Jan/2026 12:10:02] "OPTIONS /api/query HTTP/1.1" 200 -
+2026-01-16 12:10:02 - INFO - Processing query: Approval Rate by Gender for dataset: 1768565347876
+2026-01-16 12:10:02 - INFO - Retrieved 3 schema chunks for query
+2026-01-16 12:10:15 - WARNING - Failed to parse LLM response as JSON: Invalid control character at: line 1 column 42 (char 41)
+2026-01-16 12:10:15 - INFO - Generated code for: dashboard
+2026-01-16 12:10:17 - INFO - 127.0.0.1 - - [16/Jan/2026 12:10:17] "POST /api/query HTTP/1.1" 200 -
+2026-01-16 12:12:04 - INFO - 127.0.0.1 - - [16/Jan/2026 12:12:04] "OPTIONS /api/query HTTP/1.1" 200 -
+2026-01-16 12:12:04 - INFO - Processing query: Applicant Income Distribution for dataset: 1768565347876
+2026-01-16 12:12:04 - INFO - Retrieved 3 schema chunks for query
+2026-01-16 12:12:11 - WARNING - Failed to parse LLM response as JSON: Invalid control character at: line 1 column 42 (char 41)
+2026-01-16 12:12:11 - INFO - Generated code for: histogram
+2026-01-16 12:12:11 - INFO - 127.0.0.1 - - [16/Jan/2026 12:12:11] "POST /api/query HTTP/1.1" 200 -
+2026-01-16 12:13:08 - INFO - 127.0.0.1 - - [16/Jan/2026 12:13:08] "OPTIONS /api/query HTTP/1.1" 200 -
+2026-01-16 12:13:08 - INFO - Processing query: Approval Rate by Property Area for dataset: 1768565347876
+2026-01-16 12:13:08 - INFO - Retrieved 3 schema chunks for query
+2026-01-16 12:13:18 - INFO - LLM generated: bar chart
+2026-01-16 12:13:18 - INFO - Generated code for: bar chart
+2026-01-16 12:13:18 - ERROR - Code execution error: ImportError: __import__ not found
+Traceback (most recent call last):
+  File "/mnt/d/Project/Data-visualization-platform-main/backend/utils/code_executor.py", line 131, in execute
+    exec(code, safe_globals)
+  File "<string>", line 1, in <module>
+ImportError: __import__ not found
+
+2026-01-16 12:13:18 - WARNING - Code execution failed: ImportError: __import__ not found
+Traceback (most recent call last):
+  File "/mnt/d/Project/Data-visualization-platform-main/backend/utils/code_executor.py", line 131, in execute
+    exec(code, safe_globals)
+  File "<string>", line 1, in <module>
+ImportError: __import__ not found
+
+2026-01-16 12:13:18 - INFO - 127.0.0.1 - - [16/Jan/2026 12:13:18] "POST /api/query HTTP/1.1" 200 -
+2026-01-16 12:14:02 - INFO - 127.0.0.1 - - [16/Jan/2026 12:14:02] "OPTIONS /api/query HTTP/1.1" 200 -
+2026-01-16 12:14:03 - INFO - Processing query: Combined Income vs Approval for dataset: 1768565347876
+2026-01-16 12:14:03 - INFO - Retrieved 3 schema chunks for query
+2026-01-16 12:14:11 - WARNING - Failed to parse LLM response as JSON: Invalid control character at: line 1 column 42 (char 41)
+2026-01-16 12:14:11 - INFO - Generated code for: scatter
+2026-01-16 12:14:11 - INFO - 127.0.0.1 - - [16/Jan/2026 12:14:11] "POST /api/query HTTP/1.1" 200 -
+2026-01-16 14:42:09 - INFO - Received file upload request
+2026-01-16 14:42:09 - INFO - File saved: uploads/1768574528824.csv
+2026-01-16 14:42:15 - INFO - Processing schema for dataset 1768574528824
+2026-01-16 14:42:15 - INFO - Successfully stored 3 schema chunks for dataset 1768574528824
+2026-01-16 14:42:15 - INFO - Dataset loaded with shape: (614, 13)
+2026-01-16 14:42:15 - INFO - Starting data cleaning...
+2026-01-16 14:42:15 - INFO - Data cleaning completed successfully
+2026-01-16 14:42:15 - INFO - Data cleaning completed
+2026-01-16 14:42:26 - INFO - Analysis completed for dataset 1768574528824
+2026-01-16 14:42:26 - INFO - 127.0.0.1 - - [16/Jan/2026 14:42:26] "POST /api/upload HTTP/1.1" 200 -
+2026-01-16 14:44:10 - INFO - 127.0.0.1 - - [16/Jan/2026 14:44:10] "OPTIONS /api/query HTTP/1.1" 200 -
+2026-01-16 14:44:11 - INFO - Processing query: Approval Rate by Property Area for dataset: 1768574528824
+2026-01-16 14:44:11 - INFO - Retrieved 3 schema chunks for query
+2026-01-16 14:44:22 - INFO - LLM generated: bar chart
+2026-01-16 14:44:22 - INFO - Generated code for: bar chart
+2026-01-16 14:44:22 - ERROR - Code execution error: ImportError: __import__ not found
+Traceback (most recent call last):
+  File "/mnt/d/Project/Data-visualization-platform-main/backend/utils/code_executor.py", line 131, in execute
+    exec(code, safe_globals)
+  File "<string>", line 1, in <module>
+ImportError: __import__ not found
+
+2026-01-16 14:44:22 - WARNING - Code execution failed: ImportError: __import__ not found
+Traceback (most recent call last):
+  File "/mnt/d/Project/Data-visualization-platform-main/backend/utils/code_executor.py", line 131, in execute
+    exec(code, safe_globals)
+  File "<string>", line 1, in <module>
+ImportError: __import__ not found
+
+2026-01-16 14:44:22 - INFO - 127.0.0.1 - - [16/Jan/2026 14:44:22] "POST /api/query HTTP/1.1" 200 -
+2026-01-16 14:44:39 - INFO - 127.0.0.1 - - [16/Jan/2026 14:44:39] "OPTIONS /api/query HTTP/1.1" 200 -
+2026-01-16 14:44:39 - INFO - Processing query: Combined Income vs Approval for dataset: 1768574528824
+2026-01-16 14:44:39 - INFO - Retrieved 3 schema chunks for query
+2026-01-16 14:44:48 - WARNING - Failed to parse LLM response as JSON: Invalid control character at: line 1 column 42 (char 41)
+2026-01-16 14:44:48 - INFO - Generated code for: scatter
+2026-01-16 14:44:49 - INFO - 127.0.0.1 - - [16/Jan/2026 14:44:49] "POST /api/query HTTP/1.1" 200 -
+2026-01-16 14:45:31 - INFO - 127.0.0.1 - - [16/Jan/2026 14:45:31] "OPTIONS /api/query HTTP/1.1" 200 -
+2026-01-16 14:45:32 - INFO - Processing query: Applicant Income Distribution for dataset: 1768574528824
+2026-01-16 14:45:32 - INFO - Retrieved 3 schema chunks for query
+2026-01-16 14:45:39 - WARNING - Failed to parse LLM response as JSON: Invalid control character at: line 1 column 42 (char 41)
+2026-01-16 14:45:39 - INFO - Generated code for: histogram
+2026-01-16 14:45:39 - INFO - 127.0.0.1 - - [16/Jan/2026 14:45:39] "POST /api/query HTTP/1.1" 200 -
+2026-01-16 14:46:02 - INFO - 127.0.0.1 - - [16/Jan/2026 14:46:02] "OPTIONS /api/query HTTP/1.1" 200 -
+2026-01-16 14:46:02 - INFO - Processing query: Approval Rate by Gender for dataset: 1768574528824
+2026-01-16 14:46:02 - INFO - Retrieved 3 schema chunks for query
+2026-01-16 14:46:12 - INFO - LLM generated: bar chart
+2026-01-16 14:46:12 - INFO - Generated code for: bar chart
+2026-01-16 14:46:12 - ERROR - Code execution error: ImportError: __import__ not found
+Traceback (most recent call last):
+  File "/mnt/d/Project/Data-visualization-platform-main/backend/utils/code_executor.py", line 131, in execute
+    exec(code, safe_globals)
+  File "<string>", line 1, in <module>
+ImportError: __import__ not found
+
+2026-01-16 14:46:12 - WARNING - Code execution failed: ImportError: __import__ not found
+Traceback (most recent call last):
+  File "/mnt/d/Project/Data-visualization-platform-main/backend/utils/code_executor.py", line 131, in execute
+    exec(code, safe_globals)
+  File "<string>", line 1, in <module>
+ImportError: __import__ not found
+
+2026-01-16 14:46:12 - INFO - 127.0.0.1 - - [16/Jan/2026 14:46:12] "POST /api/query HTTP/1.1" 200 -

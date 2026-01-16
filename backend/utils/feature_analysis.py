@@ -127,7 +127,8 @@ def analyze_features(file_path, target_col=None):
             # Only plot if number of unique values is between 2 and 15
             if 2 <= len(value_counts) <= 15:
                 plt.figure(figsize=(10, 6))
-                value_counts.plot(kind='bar', color=plt.get_cmap('tab10').colors[:len(value_counts)])
+                colors = [plt.get_cmap('tab10')(i) for i in range(len(value_counts))]
+                value_counts.plot(kind='bar', color=colors)
                 plt.title(f'Value Counts for {col}')
                 plt.xticks(rotation=45)
                 visualizations[f'bar_{col}'] = plot_to_base64()

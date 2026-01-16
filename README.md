@@ -7,6 +7,28 @@ A modern web application that automatically generates insightful visualizations 
 
 [![Live Application](https://img.shields.io/badge/Live%20Application-Click%20Here-brightgreen)](https://data-visualization-platform.vercel.app/)
 
+## Quick Start
+
+### Start Backend (Ubuntu/Linux with CUDA)
+
+```bash
+cd backend
+pip install -r requirements.txt
+python main.py
+```
+
+The backend will run at `http://localhost:5000`
+
+### Start Frontend (Windows/Mac/Linux)
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The frontend will run at `http://localhost:5173`
+
 ## Features
 
 - Automatic data cleaning and preprocessing

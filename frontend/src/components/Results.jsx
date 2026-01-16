@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
-import { 
-  Box, 
-  Typography, 
-  CircularProgress, 
-  Alert, 
-  Paper, 
-  Tabs, 
-  Tab, 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableContainer, 
-  TableHead, 
+import {
+  Box,
+  Typography,
+  CircularProgress,
+  Alert,
+  Paper,
+  Tabs,
+  Tab,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
   TableRow,
   Container,
   Chip,
@@ -65,9 +65,9 @@ const Results = () => {
         featureRankings: backendData.feature_rankings || {},
         visualizations: backendData.visualizations
           ? {
-              data: backendData.visualizations.data || backendData.visualizations,
-              types: backendData.visualizations.types || Object.keys(backendData.visualizations.data || backendData.visualizations)
-            }
+            data: backendData.visualizations.data || backendData.visualizations,
+            types: backendData.visualizations.types || Object.keys(backendData.visualizations.data || backendData.visualizations)
+          }
           : null,
         datasetInfo: backendData.dataset_info || {}
       });
@@ -131,9 +131,9 @@ const Results = () => {
           <Alert severity="error" sx={{ mb: 3, justifyContent: 'center' }}>
             {error}
           </Alert>
-          <Button 
-            variant="contained" 
-            color="primary" 
+          <Button
+            variant="contained"
+            color="primary"
             onClick={() => window.location.reload()}
           >
             Retry
@@ -146,19 +146,19 @@ const Results = () => {
   const renderDatasetDetails = () => {
     const { null_values, data_types } = data.cleaningData || {};
     const { total_rows, total_columns } = data.datasetInfo || {};
-    
+
     return (
       <Container maxWidth="lg" sx={{ py: 4 }}>
         <Box sx={{ mb: 4 }}>
           <Typography variant="h5" gutterBottom fontWeight={600}>
             Dataset Summary
           </Typography>
-          
+
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={3}>
-              <Card 
-                elevation={2} 
-                sx={{ 
+              <Card
+                elevation={2}
+                sx={{
                   borderRadius: 2,
                   height: '100%',
                   transition: 'transform 0.2s',
@@ -176,11 +176,11 @@ const Results = () => {
                 </CardContent>
               </Card>
             </Grid>
-            
+
             <Grid item xs={12} md={6} lg={3}>
-              <Card 
-                elevation={2} 
-                sx={{ 
+              <Card
+                elevation={2}
+                sx={{
                   borderRadius: 2,
                   height: '100%',
                   transition: 'transform 0.2s',
@@ -198,11 +198,11 @@ const Results = () => {
                 </CardContent>
               </Card>
             </Grid>
-            
+
             <Grid item xs={12} md={6} lg={3}>
-              <Card 
-                elevation={2} 
-                sx={{ 
+              <Card
+                elevation={2}
+                sx={{
                   borderRadius: 2,
                   height: '100%',
                   transition: 'transform 0.2s',
@@ -220,11 +220,11 @@ const Results = () => {
                 </CardContent>
               </Card>
             </Grid>
-            
+
             <Grid item xs={12} md={6} lg={3}>
-              <Card 
-                elevation={2} 
-                sx={{ 
+              <Card
+                elevation={2}
+                sx={{
                   borderRadius: 2,
                   height: '100%',
                   transition: 'transform 0.2s',
@@ -244,13 +244,13 @@ const Results = () => {
             </Grid>
           </Grid>
         </Box>
-        
+
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
-            <Paper 
-              elevation={2} 
-              sx={{ 
-                p: 3, 
+            <Paper
+              elevation={2}
+              sx={{
+                p: 3,
                 borderRadius: 2,
                 position: 'relative',
                 '&::before': {
@@ -276,7 +276,7 @@ const Results = () => {
                   </IconButton>
                 </Tooltip>
               </Box>
-              
+
               <TableContainer sx={{ maxHeight: 350 }}>
                 <Table size="small" stickyHeader>
                   <TableHead>
@@ -290,13 +290,13 @@ const Results = () => {
                       <TableRow key={column} hover>
                         <TableCell>{column}</TableCell>
                         <TableCell>
-                          <Chip 
-                            size="small" 
-                            label={type} 
+                          <Chip
+                            size="small"
+                            label={type}
                             color={
-                              type === 'numeric' ? 'primary' : 
-                              type === 'categorical' ? 'secondary' : 
-                              type === 'datetime' ? 'info' : 'default'
+                              type === 'numeric' ? 'primary' :
+                                type === 'categorical' ? 'secondary' :
+                                  type === 'datetime' ? 'info' : 'default'
                             }
                             variant="outlined"
                           />
@@ -308,12 +308,12 @@ const Results = () => {
               </TableContainer>
             </Paper>
           </Grid>
-          
+
           <Grid item xs={12} md={6}>
-            <Paper 
-              elevation={2} 
-              sx={{ 
-                p: 3, 
+            <Paper
+              elevation={2}
+              sx={{
+                p: 3,
                 borderRadius: 2,
                 position: 'relative',
                 '&::before': {
@@ -339,7 +339,7 @@ const Results = () => {
                   </IconButton>
                 </Tooltip>
               </Box>
-              
+
               <TableContainer sx={{ maxHeight: 350 }}>
                 <Table size="small" stickyHeader>
                   <TableHead>
@@ -360,7 +360,7 @@ const Results = () => {
                             {total_rows ? (count / total_rows * 100).toFixed(2) + '%' : 'N/A'}
                           </TableCell>
                         </TableRow>
-                    ))}
+                      ))}
                     {(!null_values || Object.keys(null_values).length === 0) && (
                       <TableRow>
                         <TableCell colSpan={3} align="center">
@@ -375,12 +375,12 @@ const Results = () => {
               </TableContainer>
             </Paper>
           </Grid>
-          
+
           <Grid item xs={12}>
-            <Paper 
-              elevation={2} 
-              sx={{ 
-                p: 3, 
+            <Paper
+              elevation={2}
+              sx={{
+                p: 3,
                 borderRadius: 2,
                 position: 'relative',
                 '&::before': {
@@ -406,7 +406,7 @@ const Results = () => {
                   </IconButton>
                 </Tooltip>
               </Box>
-              
+
               <TableContainer>
                 <Table size="small">
                   <TableHead>
@@ -424,18 +424,18 @@ const Results = () => {
                         // Calculate relative importance (proportion of max score)
                         const maxScore = Math.max(...Object.values(data.featureRankings));
                         const relativeImportance = score / maxScore;
-                        
+
                         return (
                           <TableRow key={feature} hover>
                             <TableCell>{index + 1}</TableCell>
                             <TableCell sx={{ fontWeight: index < 3 ? 600 : 400 }}>
                               {feature}
                               {index < 3 && (
-                                <Chip 
-                                  size="small" 
-                                  label="Top Feature" 
-                                  color="success" 
-                                  variant="outlined" 
+                                <Chip
+                                  size="small"
+                                  label="Top Feature"
+                                  color="success"
+                                  variant="outlined"
                                   sx={{ ml: 1 }}
                                 />
                               )}
@@ -482,22 +482,22 @@ const Results = () => {
   return (
     <Box sx={{ bgcolor: 'background.default', minHeight: '100vh' }}>
       <Container maxWidth="xl" sx={{ pt: 4, pb: 8 }}>
-        <Paper 
-          elevation={0} 
-          sx={{ 
-            p: 2, 
-            mb: 4, 
-            borderRadius: 2, 
+        <Paper
+          elevation={0}
+          sx={{
+            p: 2,
+            mb: 4,
+            borderRadius: 2,
             bgcolor: theme.palette.background.paper,
             backgroundImage: `linear-gradient(to right, ${theme.palette.primary.light}20, ${theme.palette.secondary.light}20)`,
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-            <Typography 
-              variant="h4" 
-              component="h1" 
-              sx={{ 
-                fontWeight: 700, 
+            <Typography
+              variant="h4"
+              component="h1"
+              sx={{
+                fontWeight: 700,
                 background: `linear-gradient(45deg, ${theme.palette.primary.main} 30%, ${theme.palette.secondary.main} 90%)`,
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -506,16 +506,16 @@ const Results = () => {
             >
               Analysis Results
             </Typography>
-            
-            <Chip 
+
+            <Chip
               label={`Dataset ID: ${datasetId.substring(0, 8)}...`}
-              variant="outlined" 
+              variant="outlined"
               color="primary"
               size="small"
             />
-            
+
             <Box sx={{ flexGrow: 1 }} />
-            
+
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <Button
                 variant="outlined"
@@ -525,12 +525,12 @@ const Results = () => {
               >
                 Export Results
               </Button>
-              
+
               <Button
                 variant="contained"
                 startIcon={<CloudUploadIcon />}
                 size="small"
-                sx={{ 
+                sx={{
                   borderRadius: 2,
                   background: `linear-gradient(45deg, ${theme.palette.primary.main} 30%, ${theme.palette.secondary.main} 90%)`
                 }}
@@ -540,16 +540,16 @@ const Results = () => {
             </Box>
           </Box>
         </Paper>
-        
+
         <Paper elevation={1} sx={{ borderRadius: 2, overflow: 'hidden' }}>
-          <Tabs 
-            value={activeTab} 
-            onChange={handleTabChange} 
+          <Tabs
+            value={activeTab}
+            onChange={handleTabChange}
             variant="fullWidth"
             textColor="primary"
             indicatorColor="primary"
-            sx={{ 
-              borderBottom: 1, 
+            sx={{
+              borderBottom: 1,
               borderColor: 'divider',
               '& .MuiTab-root': {
                 py: 2,
@@ -558,14 +558,14 @@ const Results = () => {
               }
             }}
           >
-            <Tab 
-              label="Dataset Details" 
-              icon={<StorageIcon />} 
+            <Tab
+              label="Dataset Details"
+              icon={<StorageIcon />}
               iconPosition="start"
             />
-            <Tab 
-              label="Visualizations" 
-              icon={<TimelineIcon />} 
+            <Tab
+              label="Visualizations"
+              icon={<TimelineIcon />}
               iconPosition="start"
             />
           </Tabs>
@@ -574,7 +574,11 @@ const Results = () => {
           {activeTab === 1 && (
             <Fade in={activeTab === 1}>
               <div>
-                <VisualizationDisplay visualizations={data.visualizations} />
+                <VisualizationDisplay
+                  visualizations={data.visualizations}
+                  datasetId={datasetId}
+                  columns={data.datasetInfo?.columns}
+                />
               </div>
             </Fade>
           )}
