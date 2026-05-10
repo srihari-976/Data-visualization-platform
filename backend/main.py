@@ -8,6 +8,8 @@ from utils.feature_analysis import analyze_features
 from utils.llm_service import get_llm_service
 from utils.code_executor import execute_visualization_code
 from utils.rag_service import get_rag_service
+from utils.query_engine import answer_table_query
+from utils.dataset_preprocessing import clean_for_analysis
 
 # Logging config
 logging.basicConfig(
@@ -86,19 +88,21 @@ def upload_file():
         try:
             # Load dataframe
             df = pd.read_csv(file_path)
+            cleaned_df, preprocessing_summary = clean_for_analysis(df)
             
-            # Store full dataframe in memory for later queries (or limit if too large for memory)
-            # For analysis and execution, we might want to sample if it's huge
+            # Store cleaned dataframe in memory for later RAG/query/visualization work.
             datasets[dataset_id] = {
-                'df': df,
+                'df': cleaned_df,
+                'raw_df': df,
                 'filename': file.filename,
-                'columns': list(df.columns)
+                'columns': list(cleaned_df.columns),
+                'preprocessing_summary': preprocessing_summary
             }
             
             # Use sampled df for analysis if too large
-            analysis_df = df
-            if len(df) > MAX_ROWS_FOR_ANALYSIS:
-                analysis_df = df.sample(n=MAX_ROWS_FOR_ANALYSIS, random_state=42)
+            analysis_df = cleaned_df
+            if len(cleaned_df) > MAX_ROWS_FOR_ANALYSIS:
+                analysis_df = cleaned_df.sample(n=MAX_ROWS_FOR_ANALYSIS, random_state=42)
                 logging.info(f"Sampling dataset to {MAX_ROWS_FOR_ANALYSIS} rows for analysis")
             
             # Get LLM to analyze dataset
@@ -108,6 +112,9 @@ def upload_file():
             # Initialize RAG Service and add dataset schema
             rag = get_rag_service()
             rag.add_dataset_schema(dataset_id, analysis_df)
+
+            # Use the cleaned version for traditional analysis and initial charts too.
+            cleaned_df.to_csv(file_path, index=False)
             
             # Also run traditional feature analysis for initial visualizations
             result = analyze_features(file_path)
@@ -115,7 +122,10 @@ def upload_file():
             # Add LLM analysis and dataset info to result
             result['dataset_id'] = dataset_id
             result['llm_analysis'] = dataset_analysis.get('llm_summary', 'Dataset loaded successfully')
-            result['columns'] = list(df.columns)
+            result['columns'] = list(cleaned_df.columns)
+            result['preprocessing_summary'] = preprocessing_summary
+            if result.get('data', {}).get('cleaning_summary'):
+                result['data']['cleaning_summary']['preprocessing_summary'] = preprocessing_summary
             
             logging.info(f"Analysis completed for dataset {dataset_id}")
             
@@ -155,6 +165,10 @@ def query_visualizations():
         
         if dataset_info:
             df = dataset_info['df']
+
+            table_result = answer_table_query(query, df)
+            if table_result:
+                return jsonify(table_result)
             
             # Sample for execution if needed
             exec_df = df
@@ -189,16 +203,15 @@ def query_visualizations():
                     'interpretation': f"Generated {code_result.get('visualization_type', 'visualization')} based on your query"
                 })
             else:
-                # Code execution failed, fall back to filtering existing visualizations
+                # Code execution failed; report it instead of showing unrelated old plots.
                 logging.warning(f"Code execution failed: {execution_result.get('error')}")
                 return jsonify({
-                    'status': 'success',
-                    'mode': 'fallback',
-                    'columns': columns,
-                    'visualization_types': 'all',
-                    'interpretation': f"Showing available visualizations for: {query}",
-                    'error_detail': execution_result.get('error', 'Code execution failed')
-                })
+                    'status': 'error',
+                    'mode': 'dynamic_error',
+                    'error': execution_result.get('error', 'Code execution failed'),
+                    'code': code_result.get('code', ''),
+                    'interpretation': 'The requested visualization could not be generated.'
+                }), 500
         else:
             # No dataset in memory, use legacy query understanding
             llm = get_llm_service()
@@ -239,7 +252,8 @@ def llm_status():
             'model_loaded': llm.model_loaded,
             'device': llm.device,
             'fallback_mode': not llm.model_loaded,
-            'api_configured': bool(llm.api_key)
+            'api_configured': False,
+            'load_error': getattr(llm, 'load_error', None)
         })
     except Exception as e:
         return jsonify({
@@ -276,9 +290,9 @@ if __name__ == '__main__':
     
     llm = get_llm_service()
     if llm.model_loaded:
-        print("🧠 LLM: Groq API configured (Llama 3.1)")
+        print("🧠 LLM: Local Llama model loaded")
     else:
-        print("⚠️  LLM: Using template fallback (set GROQ_API_KEY for full features)")
+        print("⚠️  LLM: Using template fallback")
     print("=" * 60)
     
     app.run(debug=True, port=5000, use_reloader=False)
