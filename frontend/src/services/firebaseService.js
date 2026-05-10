@@ -1,5 +1,5 @@
 import { db } from '../firebase';
-import { doc, setDoc, getDoc, collection, query, orderBy, limit, getDocs } from '@firebase/firestore';
+import { doc, setDoc, getDoc, collection, query, orderBy, limit as firestoreLimit, getDocs } from '@firebase/firestore';
 
 const handleFirebaseError = (error, context) => {
   console.error(`Firebase error during ${context}:`, error);
@@ -145,7 +145,7 @@ export const firebaseService = {
   async getRecentDatasets(limit = 5) {
     try {
       checkFirebaseConnection();
-      const q = query(collection(db, 'datasets'), orderBy('uploadTime', 'desc'), limit(limit));
+      const q = query(collection(db, 'datasets'), orderBy('uploadTime', 'desc'), firestoreLimit(limit));
       const querySnapshot = await getDocs(q);
       return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     } catch (error) {
