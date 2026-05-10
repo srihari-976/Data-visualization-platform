@@ -8,6 +8,7 @@ import sys
 import base64
 import logging
 import traceback
+import warnings
 from contextlib import redirect_stdout, redirect_stderr
 import matplotlib
 matplotlib.use('Agg')  # Non-interactive backend
@@ -127,7 +128,8 @@ class CodeExecutor:
         
         try:
             # Execute the code
-            with redirect_stdout(stdout_capture), redirect_stderr(stderr_capture):
+            with redirect_stdout(stdout_capture), redirect_stderr(stderr_capture), warnings.catch_warnings(record=True) as captured_warnings:
+                warnings.simplefilter("always")
                 exec(code, safe_globals)
             
             # Capture all figures
@@ -150,9 +152,14 @@ class CodeExecutor:
         
         output = stdout_capture.getvalue()
         stderr_output = stderr_capture.getvalue()
+        warning_output = "\n".join(str(warning.message) for warning in locals().get('captured_warnings', []))
         
-        if stderr_output and not error:
+        if stderr_output and not error and not figures:
             error = stderr_output
+        elif stderr_output:
+            output = "\n".join(part for part in [output, stderr_output] if part)
+        if warning_output:
+            output = "\n".join(part for part in [output, warning_output] if part)
         
         return {
             'success': error is None,

@@ -1,6 +1,6 @@
 """
 LLM Service for intelligent data analysis and visualization code generation.
-Uses local Llama 3.1 3B with 4-bit quantization.
+Uses local Llama 3.2 3B with 8-bit quantization.
 Model is cached locally to avoid re-downloading.
 """
 
@@ -8,6 +8,7 @@ import os
 import re
 import json
 import logging
+import importlib.util
 from typing import Dict, List, Union, Optional
 import pandas as pd
 
@@ -33,12 +34,14 @@ class LLMService:
         self.model_loaded = False
         self.device = None
         self.dataset_context = None
+        self.load_error = None
         self._initialize_model()
 
     def _initialize_model(self):
         """Initialize Llama 3.2 3B from local disk with 4-bit quantization"""
         if not TORCH_AVAILABLE:
-            logger.warning("PyTorch not available. Using template fallback.")
+            self.load_error = "PyTorch/Transformers are not installed."
+            logger.warning(f"{self.load_error} Using template fallback.")
             return
             
         try:
@@ -50,18 +53,45 @@ class LLMService:
                 logger.info(f"CUDA available: {gpu_name} ({vram:.1f}GB)")
                 print(f"🖥️  GPU: {gpu_name} ({vram:.1f}GB VRAM)")
             else:
-                logger.warning("CUDA not available. Local LLM requires GPU.")
+                self.load_error = (
+                    f"CUDA is not available to PyTorch. Installed torch build: {torch.__version__}. "
+                    "Install a CUDA-enabled PyTorch build to use the local LLM."
+                )
+                logger.warning(self.load_error)
+                return
+
+            if importlib.util.find_spec("bitsandbytes") is None:
+                self.load_error = "bitsandbytes is not installed; 8-bit local Llama loading is unavailable."
+                logger.warning(self.load_error)
                 return
             
             # Local model path
             local_model_path = os.path.join(MODEL_CACHE_DIR, "Llama-3.2-3B-Instruct")
+            index_path = os.path.join(local_model_path, "model.safetensors.index.json")
+            if not os.path.exists(index_path):
+                self.load_error = f"Missing model index file: {index_path}"
+                logger.warning(self.load_error)
+                return
+
+            with open(index_path, "r", encoding="utf-8") as f:
+                index_data = json.load(f)
+            expected_shards = sorted(set(index_data.get("weight_map", {}).values()))
+            missing_shards = [
+                shard for shard in expected_shards
+                if not os.path.exists(os.path.join(local_model_path, shard))
+            ]
+            if missing_shards:
+                self.load_error = (
+                    "Local Llama weights are incomplete. Missing: "
+                    + ", ".join(missing_shards[:5])
+                )
+                logger.warning(self.load_error)
+                return
             
-            # 4-bit quantization config (Step 2: Daily-use)
+            # 8-bit quantization config with CPU offload for 4GB-class GPUs.
             quantization_config = BitsAndBytesConfig(
-                load_in_4bit=True,
-                bnb_4bit_compute_dtype=torch.float16,
-                bnb_4bit_use_double_quant=True,
-                bnb_4bit_quant_type="nf4"
+                load_in_8bit=True,
+                llm_int8_enable_fp32_cpu_offload=True
             )
             
             print(f"📂 Loading tokenizer from local disk: {local_model_path}...")
@@ -70,19 +100,30 @@ class LLMService:
             if self.tokenizer.pad_token is None:
                 self.tokenizer.pad_token = self.tokenizer.eos_token
                 
-            print("🚀 Loading model from local disk with 4-bit quantization on GPU...")
+            offload_folder = os.path.join(MODEL_CACHE_DIR, "offload")
+            os.makedirs(offload_folder, exist_ok=True)
+            device_map = {
+                "model": 0,
+                "lm_head": "cpu",
+            }
+
+            print("🚀 Loading model from local disk with 8-bit quantization on GPU/CPU offload...")
             self.model = AutoModelForCausalLM.from_pretrained(
                 local_model_path,
                 quantization_config=quantization_config,
-                device_map="auto"
+                device_map=device_map,
+                dtype="auto",
+                offload_folder=offload_folder
             )
             
             self.model.eval()
             self.model_loaded = True
-            print("✅ Model ready. No downloads. GPU active. 4-bit enabled.")
+            self.load_error = None
+            print("✅ Model ready. No downloads. GPU active. 8-bit with CPU offload enabled.")
             logger.info("Model loaded successfully!")
             
         except Exception as e:
+            self.load_error = str(e)
             logger.error(f"Error loading model: {e}")
             print(f"❌ Failed to load model: {e}")
             print("Using template-based fallback.")
@@ -162,13 +203,19 @@ Categorical: {', '.join(info['categorical_cols'][:5])}"""
         dtypes = {col: str(df[col].dtype) for col in df.columns}
         numeric_cols = list(df.select_dtypes(include=['int64', 'float64']).columns)
         categorical_cols = list(df.select_dtypes(include=['object', 'category']).columns)
-        
+
+        template_result = self._template_generate_code(query, columns, numeric_cols, categorical_cols)
+        if template_result and template_result.get('matched_intent'):
+            template_result.pop('matched_intent', None)
+            return template_result
+
         if self.model_loaded:
             result = self._llm_generate_code(query, columns, dtypes, numeric_cols, categorical_cols, schema_chunks)
             if result and result.get('code'):
                 return result
-        
-        return self._template_generate_code(query, columns, numeric_cols, categorical_cols)
+
+        template_result.pop('matched_intent', None)
+        return template_result
 
     def _llm_generate_code(self, query: str, columns: list, dtypes: dict, 
                           numeric_cols: list, categorical_cols: list, schema_chunks: list = None) -> Optional[Dict]:
@@ -186,13 +233,15 @@ Requirements:
 - Libraries already imported: plt (matplotlib.pyplot), sns (seaborn), pd (pandas), np (numpy)
 - DataFrame variable is 'df'
 - Use plt.figure(figsize=(10,6)) for single plots
+- Generate exactly ONE best visualization for the user's question
+- Do not create subplots, dashboards, multiple figures, or extra charts
 - Add title, xlabel, ylabel as appropriate
 - Use good colors (steelblue, viridis palette, coolwarm colormap)
 
 Return ONLY valid JSON in this exact format:
 {{"code": "python code here", "explanation": "what the visualization shows", "visualization_type": "chart type"}}"""
 
-        response = self._generate_with_llm(prompt, max_new_tokens=800)
+        response = self._generate_with_llm(prompt, max_new_tokens=450)
         
         if response:
             try:
@@ -214,8 +263,362 @@ Return ONLY valid JSON in this exact format:
                                 numeric_cols: list, categorical_cols: list) -> Dict:
         """Template-based code generation fallback."""
         query_lower = query.lower()
+
+        def find_numeric_column(terms):
+            for term in terms:
+                term_lower = term.lower()
+                for col in numeric_cols:
+                    col_lower = col.lower()
+                    if col_lower in query_lower or (term_lower in query_lower and term_lower in col_lower):
+                        return col
+            return None
+
+        def mentioned_numeric_columns():
+            mentioned = []
+            aliases = {
+                'cgpa': ['cgpa', 'gpa', 'grade'],
+                'score': ['score', 'aptitude', 'test', 'marks', 'exam']
+            }
+            for col in numeric_cols:
+                col_lower = col.lower()
+                if col_lower in query_lower:
+                    mentioned.append(col)
+                    continue
+                for alias_key, terms in aliases.items():
+                    if alias_key in col_lower and any(term in query_lower for term in terms):
+                        mentioned.append(col)
+                        break
+            return list(dict.fromkeys(mentioned))
+
+        relationship_intent = any(w in query_lower for w in [
+            'scatter', 'vs', 'versus', 'against', 'relationship between',
+            'relationship', 'correlate', 'correlation', 'tend to', 'tends to',
+            'associated', 'higher', 'lower', 'increase', 'score higher',
+            'score lower', 'aptitude'
+        ])
+
+        percentage_intent = any(w in query_lower for w in [
+            'percentage', 'percent', 'proportion', 'ratio', 'share'
+        ])
+
+        def normalize_name(value):
+            return re.sub(r'[^a-z0-9]+', '', str(value).lower())
+
+        column_by_norm = {normalize_name(col): col for col in columns}
+
+        alias_terms = {
+            'medv': ['medv', 'price', 'prices', 'house price', 'house prices', 'housing price', 'housing prices'],
+            'crim': ['crim', 'crime', 'crime rate'],
+            'rm': ['rm', 'rooms', 'number of rooms', 'average number of rooms'],
+            'nox': ['nox', 'nitric oxide'],
+            'chas': ['chas', 'charles river'],
+            'lstat': ['lstat', 'lower status'],
+            'tax': ['tax', 'property tax'],
+            'ptratio': ['ptratio', 'pupil-teacher', 'pupil teacher'],
+            'rad': ['rad', 'accessibility'],
+            'dis': ['dis', 'distance', 'employment centers'],
+            'age': ['age', 'old', 'newer'],
+            'indus': ['indus', 'industrial land'],
+            'zn': ['zn', 'zoning'],
+        }
+
+        def find_column_by_alias(alias_key):
+            if normalize_name(alias_key) in column_by_norm:
+                return column_by_norm[normalize_name(alias_key)]
+            for col in columns:
+                if normalize_name(alias_key) == normalize_name(col):
+                    return col
+            return None
+
+        def mentioned_columns_from_query():
+            found = []
+            for raw in re.findall(r'\(([A-Za-z0-9_ .-]+)\)', query):
+                column = column_by_norm.get(normalize_name(raw))
+                if column and column not in found:
+                    found.append(column)
+            for col in columns:
+                col_norm = normalize_name(col)
+                if col_norm and re.search(rf'\b{re.escape(str(col).lower())}\b', query_lower) and col not in found:
+                    found.append(col)
+            for alias_key, terms in alias_terms.items():
+                column = find_column_by_alias(alias_key)
+                if not column or column in found:
+                    continue
+                if any(term in query_lower for term in terms):
+                    found.append(column)
+            return found
+
+        mentioned_cols = mentioned_columns_from_query()
+
+        def first_numeric(cols):
+            for col in cols:
+                if col in numeric_cols:
+                    return col
+            return numeric_cols[0] if numeric_cols else None
+
+        def target_value_column(exclude=None):
+            exclude = set(exclude or [])
+            price_col = find_column_by_alias('medv')
+            if price_col and price_col not in exclude:
+                return price_col
+            for col in mentioned_cols:
+                if col in numeric_cols and col not in exclude:
+                    return col
+            for col in numeric_cols:
+                if col not in exclude:
+                    return col
+            return None
+
+        def dimension_column(exclude=None):
+            exclude = set(exclude or [])
+            for col in mentioned_cols:
+                if col not in exclude:
+                    return col
+            for col in categorical_cols + numeric_cols:
+                if col not in exclude:
+                    return col
+            return None
+
+        def xy_columns():
+            price_col = find_column_by_alias('medv')
+            if price_col in mentioned_cols and len(mentioned_cols) > 1:
+                x_col = next((col for col in mentioned_cols if col != price_col and col in numeric_cols), None)
+                if x_col:
+                    return x_col, price_col
+            x_col = next((col for col in mentioned_cols if col in numeric_cols), None)
+            y_col = target_value_column(exclude=[x_col])
+            return x_col, y_col
+
+        def label_expr(col):
+            if normalize_name(col) in ['placed', 'chas']:
+                positive = 'Placed' if normalize_name(col) == 'placed' else 'Near Charles River'
+                negative = 'Not Placed' if normalize_name(col) == 'placed' else 'Not Near Charles River'
+                return f"df['{col}'].map({{1: '{positive}', 0: '{negative}', '1': '{positive}', '0': '{negative}'}}).fillna(df['{col}'].astype(str))"
+            return f"df['{col}'].astype(str)"
+
+        plot_type = None
+        if 'pie' in query_lower:
+            plot_type = 'pie'
+        elif 'horizontal bar' in query_lower:
+            plot_type = 'horizontal_bar'
+        elif 'violin' in query_lower:
+            plot_type = 'violin'
+        elif 'box' in query_lower or 'outlier' in query_lower:
+            plot_type = 'box'
+        elif 'density' in query_lower or 'kde' in query_lower:
+            plot_type = 'density'
+        elif 'line' in query_lower or 'change with' in query_lower:
+            plot_type = 'line'
+        elif 'heatmap' in query_lower:
+            plot_type = 'heatmap'
+        elif 'regression' in query_lower or 'regplot' in query_lower:
+            plot_type = 'regression'
+        elif 'scatter' in query_lower or 'relationship' in query_lower or 'vary with' in query_lower:
+            plot_type = 'scatter'
+        elif 'bar' in query_lower or 'compare' in query_lower:
+            plot_type = 'bar'
+        elif 'histogram' in query_lower or 'distribution' in query_lower or 'frequency' in query_lower:
+            plot_type = 'histogram'
+
+        if plot_type == 'histogram':
+            target = first_numeric(mentioned_cols)
+            if target:
+                code = f"""
+plt.figure(figsize=(10, 6))
+sns.histplot(data=df, x='{target}', kde=True, color='steelblue', edgecolor='white')
+plt.title('Distribution of {target}', fontsize=14, fontweight='bold')
+plt.xlabel('{target}')
+plt.ylabel('Frequency')
+plt.tight_layout()
+"""
+                return {'code': code, 'explanation': f'Histogram showing the distribution of {target}.', 'visualization_type': 'histogram', 'matched_intent': True}
+
+        if plot_type == 'density':
+            target = first_numeric(mentioned_cols)
+            if target:
+                code = f"""
+plt.figure(figsize=(10, 6))
+sns.kdeplot(data=df, x='{target}', fill=True, color='steelblue', linewidth=2)
+plt.title('Density Distribution of {target}', fontsize=14, fontweight='bold')
+plt.xlabel('{target}')
+plt.ylabel('Density')
+plt.tight_layout()
+"""
+                return {'code': code, 'explanation': f'Density plot showing the distribution of {target}.', 'visualization_type': 'density', 'matched_intent': True}
+
+        if plot_type in ['scatter', 'regression']:
+            x, y = xy_columns()
+            if x in numeric_cols and y in numeric_cols:
+                plot_call = "sns.regplot(data=plot_df, x='" + x + "', y='" + y + "', scatter_kws={'alpha': 0.45, 'color': 'steelblue'}, line_kws={'color': 'red', 'linestyle': '--', 'linewidth': 2})" if plot_type == 'regression' else "sns.scatterplot(data=plot_df, x='" + x + "', y='" + y + "', alpha=0.45, color='steelblue', edgecolor=None)"
+                code = f"""
+plt.figure(figsize=(10, 6))
+plot_df = df[['{x}', '{y}']].dropna()
+{plot_call}
+plt.title('{x} vs {y}', fontsize=14, fontweight='bold')
+plt.xlabel('{x}')
+plt.ylabel('{y}')
+plt.tight_layout()
+"""
+                return {'code': code, 'explanation': f'{plot_type.title()} plot showing {x} versus {y}.', 'visualization_type': plot_type, 'matched_intent': True}
+
+        if plot_type in ['bar', 'horizontal_bar']:
+            y = target_value_column()
+            x = dimension_column(exclude=[y])
+            agg = 'median' if 'median' in query_lower else 'mean'
+            if x and y and y in numeric_cols:
+                orient = "h" if plot_type == 'horizontal_bar' else "v"
+                if x in numeric_cols:
+                    category_line = f"plot_df['{x}_range'] = pd.cut(plot_df['{x}'], bins=5)"
+                    group_col = f"{x}_range"
+                else:
+                    category_line = f"plot_df['{x}_group'] = {label_expr(x)}"
+                    group_col = f"{x}_group"
+                if orient == "h":
+                    plot_line = f"sns.barplot(data=summary, x='{y}', y='{group_col}', palette='viridis')"
+                    axis_labels = f"plt.xlabel('{agg.title()} {y}')\nplt.ylabel('{x}')"
+                else:
+                    plot_line = f"sns.barplot(data=summary, x='{group_col}', y='{y}', palette='viridis')"
+                    axis_labels = f"plt.xlabel('{x}')\nplt.ylabel('{agg.title()} {y}')\nplt.xticks(rotation=35, ha='right')"
+                code = f"""
+plt.figure(figsize=(10, 6))
+plot_df = df[['{x}', '{y}']].dropna().copy()
+{category_line}
+summary = plot_df.groupby('{group_col}', observed=False)['{y}'].{agg}().reset_index()
+summary['{group_col}'] = summary['{group_col}'].astype(str)
+{plot_line}
+plt.title('{agg.title()} {y} by {x}', fontsize=14, fontweight='bold')
+{axis_labels}
+plt.tight_layout()
+"""
+                return {'code': code, 'explanation': f'{plot_type.replace("_", " ").title()} chart comparing {agg} {y} across {x}.', 'visualization_type': plot_type, 'matched_intent': True}
+
+        if plot_type == 'pie':
+            target = dimension_column()
+            if target:
+                code = f"""
+plt.figure(figsize=(8, 8))
+labels = {label_expr(target)}
+counts = labels.value_counts().head(8)
+colors = sns.color_palette('viridis', len(counts))
+plt.pie(counts.values, labels=counts.index, autopct='%1.1f%%', startangle=90, colors=colors)
+plt.title('Percentage Distribution of {target}', fontsize=14, fontweight='bold')
+plt.axis('equal')
+plt.tight_layout()
+"""
+                return {'code': code, 'explanation': f'Pie chart showing percentage distribution of {target}.', 'visualization_type': 'pie', 'matched_intent': True}
+
+        if plot_type in ['box', 'violin']:
+            y = target_value_column()
+            x = dimension_column(exclude=[y])
+            if y:
+                if x and x != y:
+                    if x in numeric_cols:
+                        category_line = f"plot_df['{x}_group'] = pd.cut(plot_df['{x}'], bins=2, labels=['Lower {x}', 'Higher {x}'])"
+                    else:
+                        category_line = f"plot_df['{x}_group'] = {label_expr(x)}"
+                    plot_func = 'sns.violinplot' if plot_type == 'violin' else 'sns.boxplot'
+                    code = f"""
+plt.figure(figsize=(10, 6))
+plot_df = df[['{x}', '{y}']].dropna().copy()
+{category_line}
+{plot_func}(data=plot_df, x='{x}_group', y='{y}', palette='viridis')
+plt.title('{y} by {x}', fontsize=14, fontweight='bold')
+plt.xlabel('{x}')
+plt.ylabel('{y}')
+plt.xticks(rotation=30, ha='right')
+plt.tight_layout()
+"""
+                else:
+                    plot_func = 'sns.violinplot' if plot_type == 'violin' else 'sns.boxplot'
+                    code = f"""
+plt.figure(figsize=(8, 6))
+{plot_func}(data=df, y='{y}', color='steelblue')
+plt.title('{plot_type.title()} Plot of {y}', fontsize=14, fontweight='bold')
+plt.ylabel('{y}')
+plt.tight_layout()
+"""
+                return {'code': code, 'explanation': f'{plot_type.title()} plot for {y}.', 'visualization_type': plot_type, 'matched_intent': True}
+
+        if plot_type == 'line':
+            x, y = xy_columns()
+            if x in numeric_cols and y in numeric_cols:
+                code = f"""
+plt.figure(figsize=(10, 6))
+plot_df = df[['{x}', '{y}']].dropna().sort_values('{x}')
+plot_df['{x}_bin'] = pd.cut(plot_df['{x}'], bins=10)
+summary = plot_df.groupby('{x}_bin', observed=False).agg({{'{x}': 'mean', '{y}': 'mean'}}).dropna()
+sns.lineplot(data=summary, x='{x}', y='{y}', marker='o', color='steelblue')
+plt.title('Average {y} by Increasing {x}', fontsize=14, fontweight='bold')
+plt.xlabel('{x}')
+plt.ylabel('Average {y}')
+plt.tight_layout()
+"""
+                return {'code': code, 'explanation': f'Line chart showing how average {y} changes with {x}.', 'visualization_type': 'line', 'matched_intent': True}
+
+        if plot_type == 'heatmap':
+            heat_cols = [col for col in mentioned_cols if col in numeric_cols]
+            if len(heat_cols) < 2:
+                heat_cols = numeric_cols[:2]
+            if len(heat_cols) >= 2:
+                code = f"""
+plt.figure(figsize=(8, 6))
+corr = df[{heat_cols}].corr()
+sns.heatmap(corr, annot=True, cmap='coolwarm', center=0, fmt='.2f')
+plt.title('Correlation Heatmap', fontsize=14, fontweight='bold')
+plt.tight_layout()
+"""
+                return {'code': code, 'explanation': f'Heatmap showing correlation between {", ".join(heat_cols)}.', 'visualization_type': 'heatmap', 'matched_intent': True}
+
+        placed_col = next((col for col in columns if col.lower() == 'placed'), None)
+        if placed_col and percentage_intent and 'placed' in query_lower:
+            if 'pie' in query_lower:
+                code = f"""
+plt.figure(figsize=(8, 8))
+status = df['{placed_col}'].map({{1: 'Placed', 0: 'Not Placed', '1': 'Placed', '0': 'Not Placed'}}).fillna(df['{placed_col}'].astype(str))
+counts = status.value_counts()
+colors = sns.color_palette('viridis', len(counts))
+plt.pie(
+    counts.values,
+    labels=counts.index,
+    autopct=lambda pct: f'{{pct:.1f}}%\\n(n={{int(round(pct / 100 * counts.sum()))}})',
+    startangle=90,
+    colors=colors,
+    textprops={{'fontsize': 11, 'fontweight': 'bold'}}
+)
+plt.title('Placed vs Not Placed Students', fontsize=14, fontweight='bold')
+plt.axis('equal')
+plt.tight_layout()
+"""
+                return {
+                    'code': code,
+                    'explanation': f'Pie chart showing the percentage of students by {placed_col} status.',
+                    'visualization_type': 'pie',
+                    'matched_intent': True
+                }
+
+            code = f"""
+plt.figure(figsize=(8, 6))
+status = df['{placed_col}'].map({{1: 'Placed', 0: 'Not Placed', '1': 'Placed', '0': 'Not Placed'}}).fillna(df['{placed_col}'].astype(str))
+percentages = status.value_counts(normalize=True).mul(100)
+counts = status.value_counts()
+colors = sns.color_palette('viridis', len(percentages))
+ax = sns.barplot(x=percentages.index, y=percentages.values, palette=colors)
+plt.title('Placement Percentage', fontsize=14, fontweight='bold')
+plt.xlabel('Placement Status')
+plt.ylabel('Percentage of Students')
+plt.ylim(0, max(100, percentages.max() + 10))
+for i, (label, pct) in enumerate(percentages.items()):
+    ax.text(i, pct + 1, f'{{pct:.1f}}%\\n(n={{counts[label]}})', ha='center', va='bottom', fontweight='bold')
+plt.tight_layout()
+"""
+            return {
+                'code': code,
+                'explanation': f'Bar chart showing the percentage of students by {placed_col} status.',
+                'visualization_type': 'bar',
+                'matched_intent': True
+            }
         
-        if any(w in query_lower for w in ['correlation', 'heatmap', 'relationship', 'correlate']):
+        if any(w in query_lower for w in ['heatmap', 'correlation matrix']):
             if len(numeric_cols) >= 2:
                 cols_to_use = numeric_cols[:10]  # Limit for readability
                 code = f"""
@@ -226,8 +629,37 @@ sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', center=0,
 plt.title('Correlation Heatmap', fontsize=14, fontweight='bold')
 plt.tight_layout()
 """
-                return {'code': code, 'explanation': 'Correlation heatmap showing relationships between numeric variables', 'visualization_type': 'heatmap'}
+                return {'code': code, 'explanation': 'Correlation heatmap showing relationships between numeric variables', 'visualization_type': 'heatmap', 'matched_intent': True}
         
+        elif relationship_intent:
+            if len(numeric_cols) >= 2:
+                mentioned = mentioned_numeric_columns()
+                x = find_numeric_column(['cgpa', 'gpa', 'grade']) or (mentioned[0] if mentioned else numeric_cols[0])
+                y = find_numeric_column(['score', 'aptitude', 'test', 'marks', 'exam']) or (
+                    mentioned[1] if len(mentioned) > 1 else next((col for col in numeric_cols if col != x), numeric_cols[0])
+                )
+                if x == y:
+                    y = next((col for col in numeric_cols if col != x), y)
+                code = f"""
+plt.figure(figsize=(10, 6))
+plot_df = df[['{x}', '{y}']].dropna()
+corr = plot_df['{x}'].corr(plot_df['{y}'])
+sns.scatterplot(data=plot_df, x='{x}', y='{y}', alpha=0.45, color='steelblue', edgecolor=None)
+sns.regplot(data=plot_df, x='{x}', y='{y}', scatter=False, color='red', line_kws={{'linestyle': '--', 'linewidth': 2}})
+plt.title('{x} vs {y} (Pearson r = ' + f'{{corr:.3f}}' + ')', fontsize=14, fontweight='bold')
+plt.xlabel('{x}')
+plt.ylabel('{y}')
+plt.text(0.02, 0.98, 'Strong positive relationship' if corr >= 0.7 else 'Moderate positive relationship' if corr >= 0.3 else 'Weak/no positive relationship',
+         transform=plt.gca().transAxes, va='top', bbox=dict(boxstyle='round', facecolor='white', alpha=0.85))
+plt.tight_layout()
+"""
+                return {
+                    'code': code,
+                    'explanation': f'Scatter plot with regression line and Pearson correlation for {x} and {y}.',
+                    'visualization_type': 'scatter',
+                    'matched_intent': True
+                }
+
         elif any(w in query_lower for w in ['distribution', 'histogram', 'dist', 'spread']):
             target = None
             for col in numeric_cols:
@@ -248,9 +680,9 @@ plt.ylabel('Count')
 plt.legend()
 plt.tight_layout()
 """
-                return {'code': code, 'explanation': f'Distribution histogram with KDE, mean and median lines for {target}', 'visualization_type': 'histogram'}
+                return {'code': code, 'explanation': f'Distribution histogram with KDE, mean and median lines for {target}', 'visualization_type': 'histogram', 'matched_intent': True}
         
-        elif any(w in query_lower for w in ['scatter', 'plot', 'vs', 'versus', 'against', 'relationship between']):
+        elif any(w in query_lower for w in ['scatter', 'plot']):
             if len(numeric_cols) >= 2:
                 x, y = numeric_cols[0], numeric_cols[1]
                 for col in numeric_cols:
@@ -268,7 +700,7 @@ plt.xlabel('{x}')
 plt.ylabel('{y}')
 plt.tight_layout()
 """
-                return {'code': code, 'explanation': f'Scatter plot with regression line showing relationship between {x} and {y}', 'visualization_type': 'scatter'}
+                return {'code': code, 'explanation': f'Scatter plot with regression line showing relationship between {x} and {y}', 'visualization_type': 'scatter', 'matched_intent': True}
         
         elif any(w in query_lower for w in ['bar', 'category', 'count', 'categorical', 'top']):
             target = None
@@ -291,7 +723,7 @@ for i, v in enumerate(counts.values):
     plt.text(v + 0.5, i, str(v), va='center')
 plt.tight_layout()
 """
-                return {'code': code, 'explanation': f'Bar chart showing top categories in {target}', 'visualization_type': 'bar'}
+                return {'code': code, 'explanation': f'Bar chart showing top categories in {target}', 'visualization_type': 'bar', 'matched_intent': True}
         
         elif any(w in query_lower for w in ['box', 'boxplot', 'outlier', 'quartile']):
             target = None
@@ -318,7 +750,7 @@ plt.xticks(rotation=45, ha='right')
 plt.ylabel('Value')
 plt.tight_layout()
 """
-            return {'code': code, 'explanation': 'Box plot showing distribution and outliers', 'visualization_type': 'boxplot'}
+            return {'code': code, 'explanation': 'Box plot showing distribution and outliers', 'visualization_type': 'boxplot', 'matched_intent': True}
         
         elif any(w in query_lower for w in ['pie', 'proportion', 'percentage']):
             target = None
@@ -337,39 +769,23 @@ plt.pie(counts.values, labels=counts.index, autopct='%1.1f%%', colors=colors, st
 plt.title('Distribution of {target}', fontsize=14, fontweight='bold')
 plt.tight_layout()
 """
-                return {'code': code, 'explanation': f'Pie chart showing proportions of {target}', 'visualization_type': 'pie'}
+                return {'code': code, 'explanation': f'Pie chart showing proportions of {target}', 'visualization_type': 'pie', 'matched_intent': True}
         
-        # Default: create a comprehensive overview
+        # Default: create one simple overview plot instead of a multi-chart dashboard.
         if numeric_cols:
             col1 = numeric_cols[0]
-            col2 = numeric_cols[1] if len(numeric_cols) > 1 else numeric_cols[0]
             code = f"""
-fig, axes = plt.subplots(2, 2, figsize=(14, 10))
-
-# Distribution
-sns.histplot(data=df, x='{col1}', kde=True, ax=axes[0, 0], color='steelblue')
-axes[0, 0].set_title('Distribution of {col1}')
-
-# Box plots
-df[{numeric_cols[:5]}].boxplot(ax=axes[0, 1])
-axes[0, 1].set_title('Box Plots')
-axes[0, 1].tick_params(axis='x', rotation=45)
-
-# Correlation
-corr = df[{numeric_cols[:8]}].corr()
-sns.heatmap(corr, annot=True, cmap='coolwarm', ax=axes[1, 0], fmt='.2f', center=0)
-axes[1, 0].set_title('Correlation Matrix')
-
-# Scatter
-sns.scatterplot(data=df, x='{col1}', y='{col2}', ax=axes[1, 1], alpha=0.6)
-axes[1, 1].set_title('{col1} vs {col2}')
-
+plt.figure(figsize=(10, 6))
+sns.histplot(data=df, x='{col1}', kde=True, color='steelblue', edgecolor='white')
+plt.title('Distribution of {col1}', fontsize=14, fontweight='bold')
+plt.xlabel('{col1}')
+plt.ylabel('Count')
 plt.tight_layout()
 """
-            return {'code': code, 'explanation': 'Comprehensive data overview with distribution, box plots, correlation, and scatter plot', 'visualization_type': 'dashboard'}
+            return {'code': code, 'explanation': f'Distribution of {col1}', 'visualization_type': 'histogram', 'matched_intent': False}
         
         return {'code': 'plt.figure()\nplt.text(0.5, 0.5, "No suitable data to visualize", ha="center", va="center", fontsize=14)\nplt.axis("off")', 
-                'explanation': 'No suitable numeric data found for visualization', 'visualization_type': 'empty'}
+                'explanation': 'No suitable numeric data found for visualization', 'visualization_type': 'empty', 'matched_intent': False}
 
     def understand_query(self, query: str, available_columns: List[str]) -> Dict:
         """Legacy query understanding for filtering."""
