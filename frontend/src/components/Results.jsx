@@ -481,27 +481,25 @@ const Results = () => {
 
   return (
     <Box sx={{ bgcolor: 'background.default', minHeight: '100vh' }}>
-      <Container maxWidth="xl" sx={{ pt: 4, pb: 8 }}>
+      <Container maxWidth="xl" sx={{ pt: 3, pb: 8 }}>
         <Paper
           elevation={0}
           sx={{
-            p: 2,
-            mb: 4,
+            p: { xs: 2, md: 2.5 },
+            mb: 3,
             borderRadius: 2,
-            bgcolor: theme.palette.background.paper,
-            backgroundImage: `linear-gradient(to right, ${theme.palette.primary.light}20, ${theme.palette.secondary.light}20)`,
+            bgcolor: '#111827',
+            border: '1px solid rgba(148, 163, 184, 0.16)',
           }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 1.5 }}>
             <Typography
               variant="h4"
               component="h1"
               sx={{
-                fontWeight: 700,
-                background: `linear-gradient(45deg, ${theme.palette.primary.main} 30%, ${theme.palette.secondary.main} 90%)`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                mr: 3
+                fontWeight: 800,
+                color: '#f8fafc',
+                mr: 1
               }}
             >
               Analysis Results
@@ -510,8 +508,8 @@ const Results = () => {
             <Chip
               label={`Dataset ID: ${datasetId.substring(0, 8)}...`}
               variant="outlined"
-              color="primary"
               size="small"
+              sx={{ color: '#cbd5e1', borderColor: 'rgba(148, 163, 184, 0.24)', borderRadius: 1.5 }}
             />
 
             <Box sx={{ flexGrow: 1 }} />
@@ -521,7 +519,7 @@ const Results = () => {
                 variant="outlined"
                 startIcon={<DownloadIcon />}
                 size="small"
-                sx={{ borderRadius: 2 }}
+                sx={{ borderRadius: 1.5, borderColor: 'rgba(148, 163, 184, 0.24)', color: '#cbd5e1' }}
               >
                 Export Results
               </Button>
@@ -531,8 +529,9 @@ const Results = () => {
                 startIcon={<CloudUploadIcon />}
                 size="small"
                 sx={{
-                  borderRadius: 2,
-                  background: `linear-gradient(45deg, ${theme.palette.primary.main} 30%, ${theme.palette.secondary.main} 90%)`
+                  borderRadius: 1.5,
+                  bgcolor: '#7c3aed',
+                  '&:hover': { bgcolor: '#6d28d9' }
                 }}
               >
                 New Dataset
@@ -541,7 +540,7 @@ const Results = () => {
           </Box>
         </Paper>
 
-        <Paper elevation={1} sx={{ borderRadius: 2, overflow: 'hidden' }}>
+        <Paper elevation={0} sx={{ borderRadius: 2, overflow: 'hidden', bgcolor: '#111827', border: '1px solid rgba(148, 163, 184, 0.16)' }}>
           <Tabs
             value={activeTab}
             onChange={handleTabChange}
@@ -550,11 +549,14 @@ const Results = () => {
             indicatorColor="primary"
             sx={{
               borderBottom: 1,
-              borderColor: 'divider',
+              borderColor: 'rgba(148, 163, 184, 0.16)',
+              bgcolor: '#0f172a',
               '& .MuiTab-root': {
-                py: 2,
-                fontSize: 16,
-                fontWeight: 500
+                py: 1.75,
+                fontSize: 14,
+                fontWeight: 700,
+                color: '#94a3b8',
+                textTransform: 'none'
               }
             }}
           >

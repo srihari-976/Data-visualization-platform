@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, Grid, Paper, Button, Chip, CircularProgress, Alert, Collapse, IconButton } from '@mui/material';
+import { Box, Typography, Grid, Paper, Button, Chip, CircularProgress, Alert, Collapse, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import DownloadIcon from '@mui/icons-material/Download';
 import CodeIcon from '@mui/icons-material/Code';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -10,6 +10,7 @@ const VisualizationDisplay = ({ visualizations, datasetId, columns = [] }) => {
     const [queryHistory, setQueryHistory] = useState([]);
     const [filteredViz, setFilteredViz] = useState(null);
     const [dynamicViz, setDynamicViz] = useState(null);  // For LLM-generated visualizations
+    const [tableResult, setTableResult] = useState(null);
     const [loading, setLoading] = useState(false);
     const [interpretation, setInterpretation] = useState('');
     const [explanation, setExplanation] = useState('');
@@ -56,6 +57,7 @@ const VisualizationDisplay = ({ visualizations, datasetId, columns = [] }) => {
         setLoading(true);
         setError(null);
         setDynamicViz(null);
+        setTableResult(null);
         setGeneratedCode('');
         setShowCode(false);
         setQueryHistory([...queryHistory, { query, timestamp: new Date() }]);
@@ -71,8 +73,15 @@ const VisualizationDisplay = ({ visualizations, datasetId, columns = [] }) => {
             if (data.status === 'success') {
                 setInterpretation(data.interpretation);
 
-                // Check if this is a dynamic (LLM-generated) visualization
-                if (data.mode === 'dynamic' && data.figures && data.figures.length > 0) {
+                if (data.mode === 'table' && data.rows) {
+                    setMode('table');
+                    setTableResult(data);
+                    setDynamicViz(null);
+                    setFilteredViz(null);
+                    setExplanation(data.returned_count < data.row_count
+                        ? `Showing ${data.returned_count} of ${data.row_count} matching rows.`
+                        : `Showing ${data.row_count} matching rows.`);
+                } else if (data.mode === 'dynamic' && data.figures && data.figures.length > 0) {
                     setMode('dynamic');
                     setDynamicViz(data.figures);
                     setExplanation(data.explanation || '');
@@ -123,7 +132,7 @@ const VisualizationDisplay = ({ visualizations, datasetId, columns = [] }) => {
     const { data, types } = filteredViz || visualizations;
 
     return (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: { xs: 2, md: 3 }, bgcolor: '#0f172a' }}>
             {/* Query Input */}
             <QueryInput onSubmit={handleQuery} loading={loading} disabled={false} />
 
@@ -134,10 +143,11 @@ const VisualizationDisplay = ({ visualizations, datasetId, columns = [] }) => {
                     icon={<AutoAwesomeIcon />}
                     sx={{
                         mb: 3,
-                        bgcolor: 'rgba(139, 92, 246, 0.1)',
-                        border: '1px solid rgba(139, 92, 246, 0.3)',
-                        color: '#c4b5fd',
-                        '& .MuiAlert-icon': { color: '#8b5cf6' }
+                        bgcolor: 'rgba(14, 165, 233, 0.08)',
+                        border: '1px solid rgba(14, 165, 233, 0.22)',
+                        color: '#e0f2fe',
+                        borderRadius: 2,
+                        '& .MuiAlert-icon': { color: '#38bdf8' }
                     }}
                 >
                     <Box>
@@ -160,9 +170,10 @@ const VisualizationDisplay = ({ visualizations, datasetId, columns = [] }) => {
                         endIcon={<ExpandMoreIcon sx={{ transform: showCode ? 'rotate(180deg)' : 'none', transition: '0.3s' }} />}
                         onClick={() => setShowCode(!showCode)}
                         sx={{
-                            color: '#8b5cf6',
-                            border: '1px solid rgba(139, 92, 246, 0.3)',
-                            bgcolor: 'rgba(139, 92, 246, 0.1)',
+                            color: '#c4b5fd',
+                            border: '1px solid rgba(148, 163, 184, 0.18)',
+                            bgcolor: '#111827',
+                            borderRadius: 1.5,
                             mb: 1
                         }}
                     >
@@ -171,15 +182,16 @@ const VisualizationDisplay = ({ visualizations, datasetId, columns = [] }) => {
                     <Collapse in={showCode}>
                         <Paper sx={{
                             p: 2,
-                            bgcolor: 'rgba(0,0,0,0.5)',
+                            bgcolor: '#020617',
                             borderRadius: 2,
+                            border: '1px solid rgba(148, 163, 184, 0.14)',
                             overflow: 'auto',
                             maxHeight: 300
                         }}>
                             <pre style={{
                                 margin: 0,
                                 fontSize: '12px',
-                                color: '#a5f3fc',
+                                color: '#bae6fd',
                                 whiteSpace: 'pre-wrap',
                                 wordBreak: 'break-word'
                             }}>
@@ -193,7 +205,7 @@ const VisualizationDisplay = ({ visualizations, datasetId, columns = [] }) => {
             {/* Query History */}
             {queryHistory.length > 0 && (
                 <Box sx={{ mb: 3 }}>
-                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.5)', mb: 1 }}>
+                    <Typography variant="body2" sx={{ color: '#94a3b8', mb: 1 }}>
                         Recent Queries
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
@@ -204,12 +216,13 @@ const VisualizationDisplay = ({ visualizations, datasetId, columns = [] }) => {
                                 size="small"
                                 onClick={() => handleQuery(item.query)}
                                 sx={{
-                                    bgcolor: 'rgba(139, 92, 246, 0.1)',
-                                    color: '#c4b5fd',
-                                    border: '1px solid rgba(139, 92, 246, 0.2)',
+                                    bgcolor: '#111827',
+                                    color: '#cbd5e1',
+                                    border: '1px solid rgba(148, 163, 184, 0.18)',
+                                    borderRadius: 1.5,
                                     cursor: 'pointer',
                                     '&:hover': {
-                                        bgcolor: 'rgba(139, 92, 246, 0.2)'
+                                        bgcolor: 'rgba(124, 58, 237, 0.18)'
                                     }
                                 }}
                             />
@@ -228,11 +241,49 @@ const VisualizationDisplay = ({ visualizations, datasetId, columns = [] }) => {
             {/* Loading */}
             {loading && (
                 <Box sx={{ textAlign: 'center', py: 6 }}>
-                    <CircularProgress sx={{ color: '#8b5cf6', mb: 2 }} />
-                    <Typography sx={{ color: 'rgba(255,255,255,0.6)' }}>
-                        🧠 Generating visualization with AI...
+                    <CircularProgress sx={{ color: '#7c3aed', mb: 2 }} />
+                    <Typography sx={{ color: '#94a3b8' }}>
+                        Generating answer...
                     </Typography>
                 </Box>
+            )}
+
+            {!loading && mode === 'table' && tableResult && (
+                <Paper sx={{
+                    p: 3,
+                    borderRadius: 2,
+                    bgcolor: '#111827',
+                    border: '1px solid rgba(148, 163, 184, 0.16)',
+                    mb: 3
+                }}>
+                    <Typography variant="h6" sx={{ color: '#f8fafc', fontWeight: 700, mb: 2 }}>
+                        Matching Records
+                    </Typography>
+                    <TableContainer sx={{ maxHeight: 520 }}>
+                        <Table stickyHeader size="small">
+                            <TableHead>
+                                <TableRow>
+                                    {tableResult.columns.map((column) => (
+                                        <TableCell key={column} sx={{ fontWeight: 700 }}>
+                                            {column}
+                                        </TableCell>
+                                    ))}
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {tableResult.rows.map((row, rowIndex) => (
+                                    <TableRow key={rowIndex} hover>
+                                        {tableResult.columns.map((column) => (
+                                            <TableCell key={column}>
+                                                {row[column] === null || row[column] === undefined ? '' : String(row[column])}
+                                            </TableCell>
+                                        ))}
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Paper>
             )}
 
             {/* Dynamic Visualizations (LLM Generated) */}
@@ -241,17 +292,16 @@ const VisualizationDisplay = ({ visualizations, datasetId, columns = [] }) => {
                     {dynamicViz.map((figure, index) => (
                         <Grid item xs={12} key={index}>
                             <Paper sx={{
-                                p: 3,
-                                borderRadius: 3,
-                                bgcolor: 'rgba(19, 19, 26, 0.8)',
-                                border: '1px solid rgba(139, 92, 246, 0.3)',
-                                transition: 'all 0.3s',
+                                p: { xs: 2, md: 2.5 },
+                                borderRadius: 2,
+                                bgcolor: '#111827',
+                                border: '1px solid rgba(148, 163, 184, 0.16)',
                             }}>
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <AutoAwesomeIcon sx={{ color: '#8b5cf6' }} />
-                                        <Typography variant="h6" sx={{ color: 'white', fontWeight: 600 }}>
-                                            AI Generated Visualization
+                                        <AutoAwesomeIcon sx={{ color: '#a78bfa', fontSize: 20 }} />
+                                        <Typography variant="h6" sx={{ color: '#f8fafc', fontWeight: 700, fontSize: '1rem' }}>
+                                            Generated Visualization
                                         </Typography>
                                     </Box>
                                     <Button
@@ -259,11 +309,12 @@ const VisualizationDisplay = ({ visualizations, datasetId, columns = [] }) => {
                                         startIcon={<DownloadIcon />}
                                         onClick={() => downloadVisualization(figure, `ai_visualization_${index + 1}`)}
                                         sx={{
-                                            color: '#8b5cf6',
-                                            border: '1px solid rgba(139, 92, 246, 0.3)',
-                                            bgcolor: 'rgba(139, 92, 246, 0.1)',
+                                            color: '#c4b5fd',
+                                            border: '1px solid rgba(148, 163, 184, 0.18)',
+                                            bgcolor: '#0f172a',
+                                            borderRadius: 1.5,
                                             '&:hover': {
-                                                bgcolor: 'rgba(139, 92, 246, 0.2)'
+                                                bgcolor: 'rgba(124, 58, 237, 0.18)'
                                             }
                                         }}
                                     >
@@ -271,10 +322,10 @@ const VisualizationDisplay = ({ visualizations, datasetId, columns = [] }) => {
                                     </Button>
                                 </Box>
                                 <Box sx={{
-                                    borderRadius: 2,
+                                    borderRadius: 1.5,
                                     overflow: 'hidden',
                                     bgcolor: 'white',
-                                    border: '1px solid rgba(255,255,255,0.1)'
+                                    border: '1px solid rgba(148, 163, 184, 0.18)'
                                 }}>
                                     <img
                                         src={`data:image/png;base64,${figure}`}
@@ -294,17 +345,17 @@ const VisualizationDisplay = ({ visualizations, datasetId, columns = [] }) => {
                     {types.map((type) => (
                         <Grid item xs={12} md={6} key={type}>
                             <Paper sx={{
-                                p: 3,
-                                borderRadius: 3,
-                                bgcolor: 'rgba(19, 19, 26, 0.8)',
-                                border: '1px solid rgba(255,255,255,0.08)',
+                                p: 2.5,
+                                borderRadius: 2,
+                                bgcolor: '#111827',
+                                border: '1px solid rgba(148, 163, 184, 0.16)',
                                 transition: 'all 0.3s',
                                 '&:hover': {
-                                    borderColor: 'rgba(139, 92, 246, 0.3)'
+                                    borderColor: 'rgba(148, 163, 184, 0.3)'
                                 }
                             }}>
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-                                    <Typography variant="h6" sx={{ color: 'white', fontWeight: 600 }}>
+                                    <Typography variant="h6" sx={{ color: '#f8fafc', fontWeight: 700, fontSize: '1rem' }}>
                                         {type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
                                     </Typography>
                                     <Button
@@ -312,11 +363,12 @@ const VisualizationDisplay = ({ visualizations, datasetId, columns = [] }) => {
                                         startIcon={<DownloadIcon />}
                                         onClick={() => downloadVisualization(data[type], type)}
                                         sx={{
-                                            color: '#8b5cf6',
-                                            border: '1px solid rgba(139, 92, 246, 0.3)',
-                                            bgcolor: 'rgba(139, 92, 246, 0.1)',
+                                            color: '#c4b5fd',
+                                            border: '1px solid rgba(148, 163, 184, 0.18)',
+                                            bgcolor: '#0f172a',
+                                            borderRadius: 1.5,
                                             '&:hover': {
-                                                bgcolor: 'rgba(139, 92, 246, 0.2)'
+                                                bgcolor: 'rgba(124, 58, 237, 0.18)'
                                             }
                                         }}
                                     >
@@ -324,10 +376,10 @@ const VisualizationDisplay = ({ visualizations, datasetId, columns = [] }) => {
                                     </Button>
                                 </Box>
                                 <Box sx={{
-                                    borderRadius: 2,
+                                    borderRadius: 1.5,
                                     overflow: 'hidden',
-                                    bgcolor: 'rgba(255,255,255,0.02)',
-                                    border: '1px solid rgba(255,255,255,0.05)'
+                                    bgcolor: '#020617',
+                                    border: '1px solid rgba(148, 163, 184, 0.12)'
                                 }}>
                                     <img
                                         src={`data:image/png;base64,${data[type]}`}

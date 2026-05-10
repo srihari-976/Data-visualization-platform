@@ -6,8 +6,7 @@ import {
     Button,
     Paper,
     Grid,
-    Container,
-    useTheme
+    Container
 } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import BarChartIcon from '@mui/icons-material/BarChart';
@@ -18,7 +17,6 @@ import SpeedIcon from '@mui/icons-material/Speed';
 
 const Home = () => {
     const navigate = useNavigate();
-    const theme = useTheme();
 
     const steps = [
         {

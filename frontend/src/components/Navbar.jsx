@@ -49,14 +49,11 @@ const Navbar = () => {
     };
 
     const drawerContent = (
-        <Box sx={{ width: 280, height: '100%' }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2, borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+        <Box sx={{ width: 280, height: '100%', bgcolor: '#0f172a' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2.25, borderBottom: '1px solid rgba(148,163,184,0.16)' }}>
                 <Typography variant="h6" sx={{
-                    fontFamily: "'Rye', serif",
-                    fontWeight: 400,
-                    background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent'
+                    fontWeight: 800,
+                    color: 'white'
                 }}>
                     DataViz AI
                 </Typography>
@@ -75,19 +72,19 @@ const Navbar = () => {
                         sx={{
                             mb: 1,
                             mx: 1,
-                            borderRadius: 2,
-                            bgcolor: isActive(item.path) ? 'rgba(139, 92, 246, 0.2)' : 'transparent',
-                            '&:hover': { bgcolor: 'rgba(139, 92, 246, 0.1)' }
+                            borderRadius: 1.5,
+                            bgcolor: isActive(item.path) ? 'rgba(124, 58, 237, 0.16)' : 'transparent',
+                            '&:hover': { bgcolor: 'rgba(148, 163, 184, 0.08)' }
                         }}
                     >
-                        <ListItemIcon sx={{ color: isActive(item.path) ? '#8b5cf6' : 'rgba(255,255,255,0.7)', minWidth: 40 }}>
+                        <ListItemIcon sx={{ color: isActive(item.path) ? '#a78bfa' : '#94a3b8', minWidth: 40 }}>
                             {item.icon}
                         </ListItemIcon>
                         <ListItemText
                             primary={item.text}
                             sx={{
-                                color: isActive(item.path) ? '#8b5cf6' : 'white',
-                                '& .MuiListItemText-primary': { fontFamily: "'Rye', serif" }
+                                color: isActive(item.path) ? '#f8fafc' : '#cbd5e1',
+                                '& .MuiListItemText-primary': { fontWeight: 600 }
                             }}
                         />
                     </ListItem>
@@ -99,40 +96,33 @@ const Navbar = () => {
     return (
         <AppBar
             position="fixed"
-            elevation={scrolled ? 4 : 0}
+            elevation={0}
             sx={{
-                bgcolor: scrolled ? 'rgba(10, 10, 15, 0.95)' : 'rgba(10, 10, 15, 0.8)',
-                backdropFilter: 'blur(12px)',
-                borderBottom: scrolled ? 'none' : '1px solid rgba(255,255,255,0.1)'
+                bgcolor: scrolled ? 'rgba(15, 23, 42, 0.96)' : 'rgba(15, 23, 42, 0.88)',
+                backdropFilter: 'blur(14px)',
+                borderBottom: '1px solid rgba(148,163,184,0.14)'
             }}
         >
-            <Container maxWidth="lg">
-                <Toolbar sx={{ py: 1 }}>
+            <Container maxWidth="xl">
+                <Toolbar sx={{ minHeight: 64, px: { xs: 0, sm: 2 } }}>
                     <Box component={Link} to="/" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexGrow: 1 }}>
                         <Box sx={{
-                            width: 48,
-                            height: 48,
-                            borderRadius: 2,
-                            background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
+                            width: 38,
+                            height: 38,
+                            borderRadius: 1.5,
+                            background: 'linear-gradient(135deg, #7c3aed 0%, #0ea5e9 100%)',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            mr: 2,
-                            transition: 'all 0.3s ease',
-                            '&:hover': {
-                                transform: 'scale(1.1)',
-                                boxShadow: '0 0 25px rgba(139, 92, 246, 0.5)'
-                            }
+                            mr: 1.5
                         }}>
-                            <BarChartIcon sx={{ color: 'white', fontSize: 28 }} />
+                            <BarChartIcon sx={{ color: 'white', fontSize: 23 }} />
                         </Box>
                         <Typography variant="h5" sx={{
-                            fontFamily: "'Rye', serif",
-                            fontWeight: 400,
-                            background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            letterSpacing: '0.02em'
+                            fontWeight: 800,
+                            color: '#f8fafc',
+                            letterSpacing: 0,
+                            fontSize: { xs: '1.1rem', sm: '1.25rem' }
                         }}>
                             DataViz AI
                         </Typography>
@@ -143,7 +133,7 @@ const Navbar = () => {
                             <MenuIcon />
                         </IconButton>
                     ) : (
-                        <Box sx={{ display: 'flex', gap: 1 }}>
+                        <Box sx={{ display: 'flex', gap: 0.5 }}>
                             {navItems.map((item) => (
                                 <Button
                                     key={item.text}
@@ -151,16 +141,15 @@ const Navbar = () => {
                                     to={item.path}
                                     startIcon={item.icon}
                                     sx={{
-                                        fontFamily: "'Rye', serif",
-                                        px: 2,
-                                        py: 1,
-                                        borderRadius: 2,
-                                        color: isActive(item.path) ? '#8b5cf6' : 'rgba(255,255,255,0.8)',
-                                        bgcolor: isActive(item.path) ? 'rgba(139, 92, 246, 0.15)' : 'transparent',
-                                        border: isActive(item.path) ? '1px solid rgba(139, 92, 246, 0.3)' : '1px solid transparent',
+                                        px: 1.5,
+                                        py: 0.8,
+                                        borderRadius: 1.5,
+                                        color: isActive(item.path) ? '#f8fafc' : '#94a3b8',
+                                        bgcolor: isActive(item.path) ? 'rgba(124, 58, 237, 0.18)' : 'transparent',
+                                        border: '1px solid transparent',
                                         '&:hover': {
-                                            bgcolor: 'rgba(139, 92, 246, 0.1)',
-                                            color: 'white'
+                                            bgcolor: 'rgba(148, 163, 184, 0.08)',
+                                            color: '#f8fafc'
                                         }
                                     }}
                                 >
@@ -176,8 +165,7 @@ const Navbar = () => {
                         onClose={() => setDrawerOpen(false)}
                         PaperProps={{
                             sx: {
-                                bgcolor: 'rgba(10, 10, 15, 0.98)',
-                                backdropFilter: 'blur(12px)'
+                                bgcolor: '#0f172a'
                             }
                         }}
                     >
