@@ -1,0 +1,70 @@
+House price prediction:
+
+Visualize the distribution of housing prices (MEDV) using a histogram.
+Compare average house prices across different crime rate (CRIM) ranges using a bar chart.
+Visualize the relationship between number of rooms (RM) and house prices (MEDV) using a scatter plot.
+Show the distribution of nitric oxide concentration (NOX) using a histogram.
+Compare house prices for houses near the Charles River (CHAS) versus those not near it using a bar chart.
+Visualize the correlation between average number of rooms (RM) and house prices (MEDV) using a regression plot.
+Display the distribution of lower status population percentage (LSTAT) using a histogram.
+Visualize the percentage of houses near and not near the Charles River (CHAS) using a pie chart.
+Show how house prices (MEDV) vary with property tax rate (TAX) using a scatter plot.
+Compare average house prices across different pupil-teacher ratio (PTRATIO) ranges using a bar chart.
+Visualize outliers in housing prices (MEDV) using a box plot.
+Show the density distribution of crime rate (CRIM) using a density plot.
+Compare housing prices across different accessibility index values (RAD) using a bar chart.
+Visualize the relationship between distance to employment centers (DIS) and house prices (MEDV) using a scatter plot.
+Display the top areas with the highest average housing prices using a horizontal bar chart.
+Compare the distribution of house prices for old versus newer houses based on AGE using a box plot.
+Visualize the frequency distribution of industrial land proportion (INDUS) using a histogram.
+Show how housing prices (MEDV) change with increasing lower status population percentage (LSTAT) using a line chart.
+Visualize the joint relationship between crime rate (CRIM) and nitric oxide concentration (NOX) using a heatmap.
+Compare median house prices across different zoning proportions (ZN) using a violin plot.
+
+
+Ice cream selling data:
+
+Visualize the relationship between temperature and ice cream sales using a scatter plot.
+Show how ice cream sales change with increasing temperature using a line chart.
+Compare average ice cream sales across different temperature ranges using a bar chart.
+Visualize the distribution of temperature values using a histogram.
+Show the distribution of ice cream sales using a histogram.
+Visualize the correlation between temperature and ice cream sales using a regression plot.
+Compare low, medium, and high temperature ranges with corresponding ice cream sales using a grouped bar chart.
+Visualize outliers in ice cream sales using a box plot.
+Show the density distribution of ice cream sales using a density plot.
+Compare average sales on cold versus hot temperature ranges using a bar chart.
+Visualize the trend of ice cream sales growth as temperature increases using a line chart.
+Display the frequency distribution of temperature ranges using a count plot.
+Visualize the spread of ice cream sales across all temperature values using a scatter plot.
+Show the percentage contribution of different temperature categories to total ice cream sales using a pie chart.
+Compare median ice cream sales across different temperature intervals using a violin plot.
+Visualize the relationship between extreme temperatures and sales performance using a scatter plot.
+Show the variation in ice cream sales for different temperature bins using a box plot.
+Visualize the joint distribution of temperature and sales intensity using a heatmap.
+Compare average sales between below-zero and above-zero temperatures using a bar chart.
+Visualize the overall trend and season-like behavior between temperature and ice cream sales using a regression line chart.
+
+
+College placement(2)
+
+Visualize the percentage distribution of placed and non-placed students using a pie chart.
+Compare average CGPA of placed versus non-placed students using a bar chart.
+Visualize the relationship between CGPA and placement status using a scatter plot.
+Show the distribution of CGPA values among students using a histogram.
+Compare placement rates across different CGPA ranges using a bar chart.
+Visualize the relationship between placement exam scores and placement status using a scatter plot.
+Show the distribution of placement scores using a histogram.
+Compare average placement scores of placed and non-placed students using a bar chart.
+Visualize how placement probability changes with increasing CGPA using a line chart.
+Display the count of students across different CGPA intervals using a count plot.
+Visualize outliers in placement scores using a box plot.
+Compare score distributions between placed and non-placed students using a violin plot.
+Show the density distribution of CGPA values using a density plot.
+Visualize the correlation between CGPA and placement scores using a heatmap.
+Compare placement outcomes across different score ranges using a stacked bar chart.
+Visualize the trend of placement success rate across increasing score values using a line chart.
+Show the spread of placement scores across all CGPA values using a scatter plot.
+Compare median CGPA values between placed and non-placed students using a box plot.
+Visualize the joint relationship between CGPA, scores, and placement outcomes using a heatmap.
+Display the top CGPA ranges with the highest placement rates using a horizontal bar chart.
