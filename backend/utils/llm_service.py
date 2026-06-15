@@ -1,7 +1,6 @@
 """
 LLM Service for intelligent data analysis and visualization code generation.
-Uses local Llama 3.2 3B with 8-bit quantization.
-Model is cached locally to avoid re-downloading.
+Primary: Ollama (local LLM server). Fallback: HuggingFace Transformers (local Llama 3.2 3B).
 """
 
 import os
@@ -17,7 +16,18 @@ logger = logging.getLogger(__name__)
 # Model cache directory - saves model locally
 MODEL_CACHE_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'models')
 
-# Try to import torch and transformers
+# Ollama configuration (primary)
+OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
+OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "llama3.2:3b")
+
+try:
+    import ollama
+    OLLAMA_AVAILABLE = True
+except ImportError:
+    OLLAMA_AVAILABLE = False
+    logger.info("ollama Python package not installed. Install with: pip install ollama")
+
+# Try to import torch and transformers (fallback)
 try:
     import torch
     from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
@@ -32,18 +42,36 @@ class LLMService:
         self.model = None
         self.tokenizer = None
         self.model_loaded = False
+        self.ollama_available = False
+        self.ollama_client = None
         self.device = None
         self.dataset_context = None
         self.load_error = None
         self._initialize_model()
 
     def _initialize_model(self):
-        """Initialize Llama 3.2 3B from local disk with 4-bit quantization"""
+        """Initialize model: try Ollama first, then fall back to HuggingFace Transformers."""
+        # --- Attempt 1: Ollama ---
+        if OLLAMA_AVAILABLE:
+            try:
+                self.ollama_client = ollama.Client(host=OLLAMA_HOST)
+                # Verify the model is available in Ollama
+                self.ollama_client.show(OLLAMA_MODEL)
+                self.ollama_available = True
+                self.model_loaded = True
+                self.device = "ollama"
+                print(f"🦙 Ollama connected — using model: {OLLAMA_MODEL} (host: {OLLAMA_HOST})")
+                logger.info(f"Ollama connected: {OLLAMA_MODEL} @ {OLLAMA_HOST}")
+                return
+            except Exception as e:
+                logger.warning(f"Ollama not available ({e}), falling back to HuggingFace Transformers.")
+
+        # --- Attempt 2: HuggingFace Transformers (local Llama) ---
         if not TORCH_AVAILABLE:
-            self.load_error = "PyTorch/Transformers are not installed."
+            self.load_error = "Neither Ollama nor PyTorch/Transformers are available."
             logger.warning(f"{self.load_error} Using template fallback.")
             return
-            
+
         try:
             # Check CUDA
             if torch.cuda.is_available():
@@ -64,7 +92,7 @@ class LLMService:
                 self.load_error = "bitsandbytes is not installed; 8-bit local Llama loading is unavailable."
                 logger.warning(self.load_error)
                 return
-            
+
             # Local model path
             local_model_path = os.path.join(MODEL_CACHE_DIR, "Llama-3.2-3B-Instruct")
             index_path = os.path.join(local_model_path, "model.safetensors.index.json")
@@ -87,19 +115,19 @@ class LLMService:
                 )
                 logger.warning(self.load_error)
                 return
-            
+
             # 8-bit quantization config with CPU offload for 4GB-class GPUs.
             quantization_config = BitsAndBytesConfig(
                 load_in_8bit=True,
                 llm_int8_enable_fp32_cpu_offload=True
             )
-            
+
             print(f"📂 Loading tokenizer from local disk: {local_model_path}...")
             self.tokenizer = AutoTokenizer.from_pretrained(local_model_path)
-            
+
             if self.tokenizer.pad_token is None:
                 self.tokenizer.pad_token = self.tokenizer.eos_token
-                
+
             offload_folder = os.path.join(MODEL_CACHE_DIR, "offload")
             os.makedirs(offload_folder, exist_ok=True)
             device_map = {
@@ -115,40 +143,63 @@ class LLMService:
                 dtype="auto",
                 offload_folder=offload_folder
             )
-            
+
             self.model.eval()
             self.model_loaded = True
             self.load_error = None
             print("✅ Model ready. No downloads. GPU active. 8-bit with CPU offload enabled.")
             logger.info("Model loaded successfully!")
-            
+
         except Exception as e:
             self.load_error = str(e)
             logger.error(f"Error loading model: {e}")
             print(f"❌ Failed to load model: {e}")
             print("Using template-based fallback.")
 
+    def _generate_with_ollama(self, prompt: str, max_new_tokens: int = 500) -> Optional[str]:
+        """Generate text using Ollama"""
+        try:
+            messages = [
+                {"role": "system", "content": "You are a data visualization expert. Generate Python code using pandas, matplotlib, and seaborn. Respond only with valid JSON."},
+                {"role": "user", "content": prompt}
+            ]
+            response = self.ollama_client.chat(
+                model=OLLAMA_MODEL,
+                messages=messages,
+                options={
+                    "temperature": 0.1,
+                    "num_predict": max_new_tokens,
+                }
+            )
+            return response["message"]["content"].strip()
+        except Exception as e:
+            logger.error(f"Ollama generation error: {e}")
+            return None
+
     def _generate_with_llm(self, prompt: str, max_new_tokens: int = 500) -> Optional[str]:
-        """Generate text using the local Llama model"""
+        """Generate text — uses Ollama first, falls back to HuggingFace Transformers"""
         if not self.model_loaded:
             return None
-            
+
+        if self.ollama_available:
+            return self._generate_with_ollama(prompt, max_new_tokens)
+
         try:
             # Format for Llama 3.1 Instruct
             messages = [
                 {"role": "system", "content": "You are a data visualization expert. Generate Python code using pandas, matplotlib, and seaborn. Respond only with valid JSON."},
                 {"role": "user", "content": prompt}
             ]
-            
+
             # Apply chat template
             input_text = self.tokenizer.apply_chat_template(
                 messages, 
                 tokenize=False, 
                 add_generation_prompt=True
             )
-            
+
             inputs = self.tokenizer(input_text, return_tensors="pt").to(self.device)
-            
+
             with torch.no_grad():
                 outputs = self.model.generate(
                     **inputs,
@@ -158,15 +209,15 @@ class LLMService:
                     pad_token_id=self.tokenizer.pad_token_id,
                     eos_token_id=self.tokenizer.eos_token_id
                 )
-            
+
             # Decode only new tokens
             response = self.tokenizer.decode(
                 outputs[0][inputs['input_ids'].shape[1]:], 
                 skip_special_tokens=True
             )
-            
+
             return response.strip()
-            
+
         except Exception as e:
             logger.error(f"LLM generation error: {e}")
             return None

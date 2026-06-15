@@ -157,7 +157,7 @@ function App() {
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   Powered by{' '}
                   <Box component="span" sx={{ color: 'primary.main', fontWeight: 600 }}>
-                    Llama 3.2 3B
+                    Ollama / Llama 3.2 3B
                   </Box>
                 </Typography>
               </Box>

@@ -5,7 +5,7 @@ import logging
 import pandas as pd
 import uuid
 from utils.feature_analysis import analyze_features
-from utils.llm_service import get_llm_service
+from utils.llm_service import get_llm_service, OLLAMA_MODEL
 from utils.code_executor import execute_visualization_code
 from utils.rag_service import get_rag_service
 from utils.query_engine import answer_table_query
@@ -250,6 +250,7 @@ def llm_status():
         return jsonify({
             'status': 'success',
             'model_loaded': llm.model_loaded,
+            'ollama_available': llm.ollama_available,
             'device': llm.device,
             'fallback_mode': not llm.model_loaded,
             'api_configured': False,
@@ -290,7 +291,10 @@ if __name__ == '__main__':
     
     llm = get_llm_service()
     if llm.model_loaded:
-        print("🧠 LLM: Local Llama model loaded")
+        if llm.ollama_available:
+            print(f"🦙 LLM: Ollama ({OLLAMA_MODEL})")
+        else:
+            print("🧠 LLM: HuggingFace Transformers (local Llama)")
     else:
         print("⚠️  LLM: Using template fallback")
     print("=" * 60)

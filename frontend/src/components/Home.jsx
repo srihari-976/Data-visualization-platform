@@ -50,7 +50,7 @@ const Home = () => {
         {
             icon: <PsychologyIcon />,
             title: 'AI-Powered',
-            description: 'Llama 3.1 3B understands your queries and selects visualizations.',
+            description: 'Ollama-powered LLM understands your queries and selects visualizations.',
             gradient: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
             color: '#8b5cf6'
         },

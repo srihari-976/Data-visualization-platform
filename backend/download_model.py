@@ -1,3 +1,16 @@
+"""
+Download Llama model from HuggingFace to local disk (fallback for HuggingFace mode).
+
+NOTE: The primary LLM backend is now Ollama. Install Ollama and pull the model:
+    ollama pull llama3.2:3b
+
+Set environment variables (optional):
+    OLLAMA_HOST=http://localhost:11434
+    OLLAMA_MODEL=llama3.2:3b
+
+This script is only needed if you want to keep the HuggingFace Transformers fallback.
+"""
+
 import os
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
