@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { 
   Box, 
   Typography, 
@@ -19,16 +20,17 @@ import {
   useMediaQuery
 } from '@mui/material';
 import { 
-  DownloadOutlined, 
+  FileDownloadOutlined, 
   FullscreenOutlined, 
   InfoOutlined,
   ArrowBackIosNew,
   ArrowForwardIos
 } from '@mui/icons-material';
-import { db } from '../firebase';
-import { doc, getDoc } from '@firebase/firestore';
+import axios from 'axios';
 
 const VizGallery = () => {
+  const { datasetId: routeDatasetId } = useParams();
+  const navigate = useNavigate();
   const [visualizations, setVisualizations] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -43,57 +45,51 @@ const VizGallery = () => {
   useEffect(() => {
     const loadVisualizations = async () => {
       try {
-        // Show loading state first
         setLoading(true);
-        
-        // Get the document ID from localStorage
-        const docId = localStorage.getItem('current_viz_doc');
+
+        const docId = routeDatasetId || localStorage.getItem('current_viz_doc');
         if (!docId) {
-          setError('No visualization data found. Please upload a dataset first.');
+          setError('No dataset found. Please upload a dataset first.');
           setLoading(false);
           return;
         }
 
-        // Fetch the data from Firestore
-        const docRef = doc(db, 'visualizations', docId);
-        const docSnap = await getDoc(docRef);
-
-        if (!docSnap.exists()) {
-          setError('Visualization data not found. Please upload a dataset again.');
-          setLoading(false);
-          return;
-        }
-
-        const data = docSnap.data();
+        // Fetch visualizations from backend API
+        const response = await axios.get(`/api/visualizations/${docId}`);
         
-        if (data.status === 'error') {
-          setError(data.error || 'Error processing the dataset');
+        if (response.data.status === 'error') {
+          setError(response.data.error || 'Error generating visualizations');
           setLoading(false);
           return;
         }
 
-        if (!data.visualizations || Object.keys(data.visualizations).length === 0) {
-          setError('No visualizations available in the dataset');
+        const vizData = response.data.data || {};
+        const plots = vizData.visualizations?.data || {};
+        
+        if (Object.keys(plots).length === 0) {
+          setError('No visualizations could be generated. Ensure the dataset has numeric or categorical columns.');
           setLoading(false);
           return;
         }
 
-        // Extract metadata if available
-        if (data.metadata) {
-          setMetaData(data.metadata);
-        }
+        setMetaData({
+          count: vizData.visualizations?.count || 0,
+          types: vizData.visualizations?.types || [],
+          datasetInfo: vizData.dataset_info || {}
+        });
 
-        setVisualizations(data.visualizations);
+        setVisualizations(plots);
         setLoading(false);
       } catch (err) {
         console.error('Error loading visualizations:', err);
-        setError('Error loading visualizations. Please try uploading the dataset again.');
+        const msg = err.response?.data?.error || err.message || 'Error loading visualizations';
+        setError(msg);
         setLoading(false);
       }
     };
 
     loadVisualizations();
-  }, []);
+  }, [routeDatasetId]);
 
   const handleFullscreen = (title, imageData) => {
     setFullscreenImage({ title, imageData });
@@ -145,19 +141,6 @@ const VizGallery = () => {
             Processing your dataset and creating insights...
           </Typography>
         </Box>
-        <Grid container spacing={3} mt={2}>
-          {[1, 2, 3, 4].map((item) => (
-            <Grid item xs={12} md={6} key={item}>
-              <Card>
-                <Skeleton variant="rectangular" height={250} animation="wave" />
-                <CardContent>
-                  <Skeleton variant="text" width="60%" height={30} />
-                  <Skeleton variant="text" width="40%" height={20} />
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
       </Box>
     );
   }
@@ -175,7 +158,7 @@ const VizGallery = () => {
         >
           <Box sx={{ ml: 1 }}>
             <Typography variant="h6" gutterBottom>
-              Unable to Generate Visualizations
+              Unable to Load Visualizations
             </Typography>
             <Typography variant="body1">
               {error}
@@ -184,9 +167,9 @@ const VizGallery = () => {
               variant="contained" 
               color="primary" 
               sx={{ mt: 2 }} 
-              href="/upload"
+              onClick={() => navigate('/upload')}
             >
-              Try Again
+              Upload Dataset
             </Button>
           </Box>
         </Alert>
@@ -208,7 +191,7 @@ const VizGallery = () => {
             variant="contained" 
             color="primary" 
             sx={{ mt: 2 }} 
-            href="/upload"
+            onClick={() => navigate('/upload')}
           >
             Upload Dataset
           </Button>
@@ -217,7 +200,6 @@ const VizGallery = () => {
     );
   }
 
-  // Paginate the visualizations
   const vizEntries = Object.entries(visualizations);
   const totalPages = Math.ceil(vizEntries.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -226,7 +208,6 @@ const VizGallery = () => {
   return (
     <Fade in={!loading}>
       <Box sx={{ py: 3 }}>
-        {/* Header with dataset info */}
         <Box mb={4}>
           <Typography variant="h4" gutterBottom fontWeight="500">
             Dataset Insights
@@ -235,23 +216,17 @@ const VizGallery = () => {
           {metaData && (
             <Box sx={{ mb: 2 }}>
               <Chip 
-                label={`${metaData.rows || '?'} rows`} 
+                label={`${metaData.count || 0} visualizations`} 
                 color="primary" 
                 size="small" 
                 sx={{ mr: 1, mb: 1 }} 
               />
-              <Chip 
-                label={`${metaData.columns || '?'} columns`} 
-                color="secondary" 
-                size="small" 
-                sx={{ mr: 1, mb: 1 }} 
-              />
-              {metaData.fileName && (
+              {metaData.datasetInfo?.numeric_columns && (
                 <Chip 
-                  label={metaData.fileName} 
-                  variant="outlined" 
-                  size="small"
-                  sx={{ mb: 1 }} 
+                  label={`${metaData.datasetInfo.numeric_columns.length} numeric features`} 
+                  color="secondary" 
+                  size="small" 
+                  sx={{ mr: 1, mb: 1 }} 
                 />
               )}
             </Box>
@@ -260,7 +235,6 @@ const VizGallery = () => {
           <Divider sx={{ mb: 3 }} />
         </Box>
 
-        {/* Visualization Grid */}
         <Grid container spacing={3}>
           {currentVizEntries.map(([title, imageData]) => (
             <Grid item xs={12} md={6} key={title}>
@@ -303,19 +277,14 @@ const VizGallery = () => {
                       display: 'flex',
                       gap: 1,
                       opacity: 0.8,
-                      '&:hover': {
-                        opacity: 1,
-                      },
+                      '&:hover': { opacity: 1 },
                     }}
                   >
                     <Tooltip title="View Fullscreen">
                       <IconButton
                         size="small"
                         onClick={() => handleFullscreen(title, imageData)}
-                        sx={{ 
-                          bgcolor: 'rgba(255, 255, 255, 0.9)',
-                          '&:hover': { bgcolor: 'white' }
-                        }}
+                        sx={{ bgcolor: 'rgba(255, 255, 255, 0.9)', '&:hover': { bgcolor: 'white' } }}
                       >
                         <FullscreenOutlined fontSize="small" />
                       </IconButton>
@@ -324,12 +293,9 @@ const VizGallery = () => {
                       <IconButton
                         size="small"
                         onClick={() => handleDownload(title, imageData)}
-                        sx={{ 
-                          bgcolor: 'rgba(255, 255, 255, 0.9)',
-                          '&:hover': { bgcolor: 'white' }
-                        }}
+                        sx={{ bgcolor: 'rgba(255, 255, 255, 0.9)', '&:hover': { bgcolor: 'white' } }}
                       >
-                        <DownloadOutlined fontSize="small" />
+                        <FileDownloadOutlined fontSize="small" />
                       </IconButton>
                     </Tooltip>
                   </Box>
@@ -350,7 +316,6 @@ const VizGallery = () => {
           ))}
         </Grid>
 
-        {/* Pagination Controls */}
         {totalPages > 1 && (
           <Box 
             sx={{ 
@@ -382,7 +347,6 @@ const VizGallery = () => {
           </Box>
         )}
 
-        {/* Fullscreen Modal */}
         {fullscreenImage && (
           <Box
             sx={{
@@ -405,11 +369,7 @@ const VizGallery = () => {
                 component="img"
                 src={`data:image/png;base64,${fullscreenImage.imageData}`}
                 alt={formatTitle(fullscreenImage.title)}
-                sx={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'contain',
-                }}
+                sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
               />
               <Typography 
                 variant="h6" 

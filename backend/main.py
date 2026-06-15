@@ -132,9 +132,6 @@ def upload_file():
         except Exception as e:
             logging.error(f"Error during analysis: {str(e)}")
             return jsonify({'status': 'error', 'error': f'Analysis failed: {str(e)}'}), 500
-        finally:
-            # Keep the file for now (needed for queries)
-            pass
 
         return jsonify(result)
 
@@ -279,16 +276,47 @@ def list_datasets():
     return jsonify({'status': 'success', 'datasets': dataset_list})
 
 
-if __name__ == '__main__':
-    logging.info("Starting DataViz AI Flask application")
+@app.route('/api/visualizations/<dataset_id>', methods=['GET'])
+def get_visualizations(dataset_id):
+    """Regenerate visualizations for a dataset"""
+    dataset_info = datasets.get(dataset_id)
+    if not dataset_info:
+        return jsonify({'status': 'error', 'error': 'Dataset not found in memory. Re-upload it.'}), 404
+
+    file_path = os.path.join(app.config['UPLOAD_FOLDER'], f"{dataset_id}.csv")
+    if not os.path.exists(file_path):
+        return jsonify({'status': 'error', 'error': 'Dataset file not found.'}), 404
+
+    try:
+        result = analyze_features(file_path)
+        result['dataset_id'] = dataset_id
+        result['columns'] = dataset_info.get('columns', [])
+        return jsonify(result)
+    except Exception as e:
+        logging.error(f"Error regenerating visualizations: {e}")
+        return jsonify({'status': 'error', 'error': str(e)}), 500
+
+
+def _print_startup_banner():
+    import socket
+    hostname = socket.gethostname()
+    port = 5000
+    private_ip = "unknown"
+    try:
+        private_ip = socket.gethostbyname(hostname)
+    except Exception:
+        pass
+
     print("=" * 60)
     print("  DataViz AI Server - LLM Powered")
     print("=" * 60)
-    print("✅ Server running at http://127.0.0.1:5000/")
-    print("📊 Upload endpoint: http://127.0.0.1:5000/api/upload")
-    print("🤖 Query endpoint: http://127.0.0.1:5000/api/query")
+    print(f"  Local:    http://127.0.0.1:{port}/")
+    print(f"  Private:  http://{private_ip}:{port}/")
+    print(f"  All IPs:  http://0.0.0.0:{port}/")
+    print(f"  Upload:   /api/upload")
+    print(f"  Query:    /api/query")
     print("=" * 60)
-    
+
     llm = get_llm_service()
     if llm.model_loaded:
         if llm.ollama_available:
@@ -298,5 +326,10 @@ if __name__ == '__main__':
     else:
         print("⚠️  LLM: Using template fallback")
     print("=" * 60)
-    
-    app.run(debug=True, port=5000, use_reloader=False)
+
+
+if __name__ == '__main__':
+    logging.info("Starting DataViz AI Flask application")
+    _print_startup_banner()
+
+    app.run(debug=True, port=5000, use_reloader=False, host="0.0.0.0")

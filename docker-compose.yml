@@ -1,0 +1,66 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: dataviz-ollama
+    volumes:
+      - ollama-models:/root/.ollama
+    entrypoint: >
+      /bin/sh -c "
+      echo 'Starting Ollama server...';
+      ollama serve &
+      sleep 3 &&
+      echo 'Attempting to pull model llama3.2:3b (timeout 5min)...';
+      timeout 300 ollama pull llama3.2:3b || echo 'Model pull timed out or failed — will retry on first request';
+      echo 'Ollama server running.';
+      wait
+      "
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+    networks:
+      - dataviz-network
+    restart: unless-stopped
+
+  backend:
+    image: sri235/dataviz-backend:latest
+    container_name: dataviz-backend
+    expose:
+      - "5000"
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+      - OLLAMA_MODEL=llama3.2:3b
+      - FLASK_ENV=production
+    depends_on:
+      ollama:
+        condition: service_healthy
+    volumes:
+      - backend-data:/app/data
+      - backend-uploads:/app/uploads
+      - backend-results:/app/results
+    networks:
+      - dataviz-network
+    restart: unless-stopped
+
+  frontend:
+    image: sri235/dataviz-frontend:latest
+    container_name: dataviz-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - dataviz-network
+    restart: unless-stopped
+
+volumes:
+  ollama-models:
+  backend-data:
+  backend-uploads:
+  backend-results:
+
+networks:
+  dataviz-network:
+    driver: bridge

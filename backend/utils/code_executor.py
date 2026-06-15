@@ -18,8 +18,10 @@ logger = logging.getLogger(__name__)
 
 # Allowed modules for code execution
 ALLOWED_MODULES = {
-    'pandas', 'numpy', 'matplotlib', 'matplotlib.pyplot', 'seaborn',
-    'scipy', 'scipy.stats', 'math', 'statistics'
+    'pandas', 'numpy', 'matplotlib', 'matplotlib.pyplot', 'matplotlib.figure', 'seaborn',
+    'scipy', 'scipy.stats', 'math', 'statistics', 'sklearn', 'sklearn.cluster',
+    'sklearn.preprocessing', 'sklearn.decomposition', 'datetime', 'collections',
+    'itertools', 'random', 'textwrap'
 }
 
 # Forbidden patterns in code
@@ -46,6 +48,21 @@ class CodeExecutor:
         for pattern in FORBIDDEN_PATTERNS:
             if pattern.lower() in code_lower:
                 return False, f"Forbidden pattern detected: {pattern}"
+
+        import ast
+        try:
+            tree = ast.parse(code, mode="exec")
+            for node in ast.walk(tree):
+                if isinstance(node, ast.Import):
+                    for alias in node.names:
+                        if alias.name not in ALLOWED_MODULES and not alias.name.startswith("sklearn"):
+                            return False, f"Module '{alias.name}' is not allowed"
+                elif isinstance(node, ast.ImportFrom):
+                    module = node.module or ""
+                    if module not in ALLOWED_MODULES and not module.startswith("sklearn"):
+                        return False, f"Module '{module}' is not allowed"
+        except SyntaxError as e:
+            return False, f"Syntax error in generated code: {e}"
         
         return True, "Code validated"
     
@@ -147,8 +164,8 @@ class CodeExecutor:
             plt.close('all')
             
         except Exception as e:
-            error = f"{type(e).__name__}: {str(e)}\n{traceback.format_exc()}"
-            logger.error(f"Code execution error: {error}")
+            logger.error(f"Code execution error: {type(e).__name__}: {str(e)}")
+            error = f"{type(e).__name__}: {str(e)}"
         
         output = stdout_capture.getvalue()
         stderr_output = stderr_capture.getvalue()

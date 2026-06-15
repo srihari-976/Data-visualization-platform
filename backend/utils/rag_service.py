@@ -80,8 +80,22 @@ class RAGService:
             return "Error generating schema summary."
 
     def _chunk_text(self, text: str, chunk_size: int = 800) -> list[str]:
-        """Split text into chunks"""
-        return [text[i:i+chunk_size] for i in range(0, len(text), chunk_size)]
+        """Split text into semantic chunks (at newline boundaries)"""
+        lines = text.split("\n")
+        chunks = []
+        current_chunk = []
+        current_len = 0
+        for line in lines:
+            if current_len + len(line) > chunk_size and current_chunk:
+                chunks.append("\n".join(current_chunk))
+                current_chunk = [line]
+                current_len = len(line)
+            else:
+                current_chunk.append(line)
+                current_len += len(line) + 1
+        if current_chunk:
+            chunks.append("\n".join(current_chunk))
+        return chunks or [text]
 
     def add_dataset_schema(self, dataset_id: str, df: pd.DataFrame):
         """Process dataset and store schema chunks in ChromaDB"""

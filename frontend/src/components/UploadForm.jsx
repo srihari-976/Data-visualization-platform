@@ -22,7 +22,7 @@ import ErrorIcon from '@mui/icons-material/Error';
 import { firebaseService } from '../services/firebaseService';
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = '';
 
 const UploadForm = () => {
     const [file, setFile] = useState(null);
@@ -96,13 +96,16 @@ const UploadForm = () => {
             setProgress(80);
 
             setStatus('Generating visualizations...');
+            const vizData = response.data.data.visualizations || {};
             await firebaseService.storeVisualizations(datasetId, {
-                summary: response.data.data.visualizations?.summary || {},
-                plots: response.data.data.visualizations?.plots || {},
+                summary: { count: vizData.count || 0, types: vizData.types || [] },
+                plots: {},
                 timestamp: new Date().toISOString()
             });
             setProgress(100);
             setActiveStep(3);
+
+            localStorage.setItem('current_viz_doc', datasetId);
 
             setTimeout(() => {
                 navigate(`/results/${datasetId}`, { state: { backendData: response.data.data } });

@@ -28,7 +28,6 @@ import {
   Button
 } from '@mui/material';
 import { firebaseService } from '../services/firebaseService';
-import Plot from 'react-plotly.js';
 import StorageIcon from '@mui/icons-material/Storage';
 import InsightsIcon from '@mui/icons-material/Insights';
 import TimelineIcon from '@mui/icons-material/Timeline';
@@ -418,57 +417,66 @@ const Results = () => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {data.featureRankings && Object.entries(data.featureRankings)
-                      .sort((a, b) => b[1] - a[1]) // Sort by importance descending
-                      .map(([feature, score], index) => {
-                        // Calculate relative importance (proportion of max score)
-                        const maxScore = Math.max(...Object.values(data.featureRankings));
-                        const relativeImportance = score / maxScore;
+                    {data.featureRankings && Object.keys(data.featureRankings).length > 0
+                      ? Object.entries(data.featureRankings)
+                        .sort((a, b) => b[1] - a[1])
+                        .map(([feature, score], index) => {
+                          const maxScore = Math.max(...Object.values(data.featureRankings));
+                          const relativeImportance = score / maxScore;
 
-                        return (
-                          <TableRow key={feature} hover>
-                            <TableCell>{index + 1}</TableCell>
-                            <TableCell sx={{ fontWeight: index < 3 ? 600 : 400 }}>
-                              {feature}
-                              {index < 3 && (
-                                <Chip
-                                  size="small"
-                                  label="Top Feature"
-                                  color="success"
-                                  variant="outlined"
-                                  sx={{ ml: 1 }}
-                                />
-                              )}
-                            </TableCell>
-                            <TableCell>{score.toFixed(4)}</TableCell>
-                            <TableCell>
-                              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                <Box
-                                  sx={{
-                                    width: '100%',
-                                    height: 8,
-                                    bgcolor: 'grey.200',
-                                    borderRadius: 4,
-                                    mr: 1
-                                  }}
-                                >
+                          return (
+                            <TableRow key={feature} hover>
+                              <TableCell>{index + 1}</TableCell>
+                              <TableCell sx={{ fontWeight: index < 3 ? 600 : 400 }}>
+                                {feature}
+                                {index < 3 && (
+                                  <Chip
+                                    size="small"
+                                    label="Top Feature"
+                                    color="success"
+                                    variant="outlined"
+                                    sx={{ ml: 1 }}
+                                  />
+                                )}
+                              </TableCell>
+                              <TableCell>{score.toFixed(2)}%</TableCell>
+                              <TableCell>
+                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                   <Box
                                     sx={{
-                                      width: `${relativeImportance * 100}%`,
-                                      height: '100%',
-                                      bgcolor: index < 3 ? 'success.main' : 'primary.main',
-                                      borderRadius: 4
+                                      width: '100%',
+                                      height: 8,
+                                      bgcolor: 'grey.200',
+                                      borderRadius: 4,
+                                      mr: 1
                                     }}
-                                  />
+                                  >
+                                    <Box
+                                      sx={{
+                                        width: `${relativeImportance * 100}%`,
+                                        height: '100%',
+                                        bgcolor: index < 3 ? 'success.main' : 'primary.main',
+                                        borderRadius: 4
+                                      }}
+                                    />
+                                  </Box>
+                                  <Typography variant="body2">
+                                    {(relativeImportance * 100).toFixed(1)}%
+                                  </Typography>
                                 </Box>
-                                <Typography variant="body2">
-                                  {(relativeImportance * 100).toFixed(1)}%
-                                </Typography>
-                              </Box>
-                            </TableCell>
-                          </TableRow>
-                        );
-                      })}
+                              </TableCell>
+                            </TableRow>
+                          );
+                        })
+                      : (
+                        <TableRow>
+                          <TableCell colSpan={4} align="center">
+                            <Typography variant="body2" color="text.secondary" sx={{ py: 3 }}>
+                              Feature importance requires at least 2 numeric columns. Upload a dataset with numeric data to see rankings.
+                            </Typography>
+                          </TableCell>
+                        </TableRow>
+                      )}
                   </TableBody>
                 </Table>
               </TableContainer>

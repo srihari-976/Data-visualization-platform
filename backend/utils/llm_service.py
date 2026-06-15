@@ -55,7 +55,6 @@ class LLMService:
         if OLLAMA_AVAILABLE:
             try:
                 self.ollama_client = ollama.Client(host=OLLAMA_HOST)
-                # Verify the model is available in Ollama
                 self.ollama_client.show(OLLAMA_MODEL)
                 self.ollama_available = True
                 self.model_loaded = True
@@ -63,8 +62,14 @@ class LLMService:
                 print(f"🦙 Ollama connected — using model: {OLLAMA_MODEL} (host: {OLLAMA_HOST})")
                 logger.info(f"Ollama connected: {OLLAMA_MODEL} @ {OLLAMA_HOST}")
                 return
+            except ollama.ResponseError as e:
+                status = getattr(e, "status_code", None)
+                if status == 404:
+                    logger.warning(f"Model {OLLAMA_MODEL} not found in Ollama. Pull it manually or wait for the container startup to finish.")
+                else:
+                    logger.warning(f"Ollama error: {e}")
             except Exception as e:
-                logger.warning(f"Ollama not available ({e}), falling back to HuggingFace Transformers.")
+                logger.warning(f"Ollama not available ({e})")
 
         # --- Attempt 2: HuggingFace Transformers (local Llama) ---
         if not TORCH_AVAILABLE:
@@ -140,7 +145,7 @@ class LLMService:
                 local_model_path,
                 quantization_config=quantization_config,
                 device_map=device_map,
-                dtype="auto",
+                torch_dtype="auto",
                 offload_folder=offload_folder
             )
 
@@ -183,6 +188,18 @@ class LLMService:
 
         if self.ollama_available:
             return self._generate_with_ollama(prompt, max_new_tokens)
+
+        # Lazily retry Ollama (model may have been pulled after startup)
+        if OLLAMA_AVAILABLE and not self.ollama_available:
+            try:
+                self.ollama_client = ollama.Client(host=OLLAMA_HOST)
+                self.ollama_client.show(OLLAMA_MODEL)
+                self.ollama_available = True
+                self.model_loaded = True
+                logger.info(f"Ollama now available: {OLLAMA_MODEL}")
+                return self._generate_with_ollama(prompt, max_new_tokens)
+            except Exception:
+                pass
 
         try:
             # Format for Llama 3.1 Instruct

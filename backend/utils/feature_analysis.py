@@ -10,6 +10,8 @@ import io
 import base64
 import logging
 from itertools import combinations
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
 from utils.data_cleaning import DataCleaner
 
 def plot_to_base64():
@@ -18,6 +20,29 @@ def plot_to_base64():
     plt.savefig(buf, format='png', bbox_inches='tight', dpi=300)
     plt.close()
     return base64.b64encode(buf.getvalue()).decode('utf-8')
+
+
+def compute_feature_importance(df):
+    """Compute feature importance scores using PCA loadings."""
+    numeric_cols = df.select_dtypes(include=[np.number]).columns
+    if len(numeric_cols) < 2:
+        return {}
+
+    df_numeric = df[numeric_cols].dropna()
+    if len(df_numeric) < 2:
+        return {}
+
+    try:
+        scaler = StandardScaler()
+        scaled = scaler.fit_transform(df_numeric)
+        pca = PCA(n_components=1)
+        pca.fit(scaled)
+        loadings = np.abs(pca.components_[0])
+        total = loadings.sum()
+        scores = {str(col): float(loadings[i] / total * 100) for i, col in enumerate(numeric_cols)}
+        return dict(sorted(scores.items(), key=lambda x: x[1], reverse=True))
+    except Exception:
+        return {}
 
 def convert_numpy_types(obj):
     """Convert NumPy types to Python native types for JSON serialization"""
@@ -150,9 +175,10 @@ def analyze_features(file_path, target_col=None):
                 'visualizations': {
                     'count': len(visualizations),
                     'types': list(visualizations.keys()),
-                    'data': visualizations  # Store actual visualization data
+                    'data': visualizations
                 },
                 'cleaning_summary': cleaning_summary,
+                'feature_rankings': compute_feature_importance(df_cleaned),
                 'dataset_info': {
                     'total_rows': int(df.shape[0]),
                     'total_columns': int(df.shape[1]),
