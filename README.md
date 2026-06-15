@@ -12,11 +12,26 @@ A modern web application that automatically generates insightful visualizations 
 ### Docker (Recommended)
 
 ```bash
+git clone https://github.com/your-username/Data-visualization-platform.git
+cd Data-visualization-platform
+
+# Pull pre-built images from Docker Hub
 docker pull sri235/dataviz-backend:latest
+docker pull sri235/dataviz-frontend:latest
+docker pull ollama/ollama:latest
+
+# Start all services
 docker-compose up
 ```
 
 App available at **http://localhost**
+
+No build required — all images are pulled from Docker Hub:
+- `sri235/dataviz-backend:latest`
+- `sri235/dataviz-frontend:latest`
+- `ollama/ollama:latest` (official image)
+
+First run downloads the Llama model (~2GB) into a Docker volume. Subsequent runs use the cached volume.
 
 ### Local Development
 
@@ -42,6 +57,7 @@ Backend runs at `http://localhost:5000`, Frontend at `http://localhost:5173`
 - Support for CSV and Excel files
 - Modern, responsive UI with Material-UI and TailwindCSS
 - Real-time data processing
+- Feature importance rankings via PCA analysis
 
 ## Tech Stack
 
@@ -78,23 +94,17 @@ Backend runs at `http://localhost:5000`, Frontend at `http://localhost:5173`
 
 ### Docker Deployment
 
-1. Pull the pre-built backend image:
+1. Clone the repository:
 
    ```bash
-   docker pull sri235/dataviz-backend:latest
-   ```
-
-2. Clone the repository:
-
-   ```bash
-   git clone <repo-url>
+   git clone https://github.com/your-username/Data-visualization-platform.git
    cd Data-visualization-platform
    ```
 
-3. Build and start all services:
+2. Start all services:
 
    ```bash
-   docker-compose up --build
+   docker-compose up
    ```
 
    First run downloads the Llama model (~2GB). Subsequent runs use the cached volume.
@@ -106,6 +116,24 @@ Backend runs at `http://localhost:5000`, Frontend at `http://localhost:5173`
    ```bash
    docker-compose down
    ```
+
+### Rebuilding Images (if you made changes)
+
+```bash
+docker-compose up --build
+```
+
+Or rebuild and push individual services:
+
+```bash
+# Backend
+docker build -f backend/Dockerfile -t sri235/dataviz-backend:latest .
+docker push sri235/dataviz-backend:latest
+
+# Frontend
+docker build -f frontend/Dockerfile -t sri235/dataviz-frontend:latest .
+docker push sri235/dataviz-frontend:latest
+```
 
 ### Local Development (Without Docker)
 
@@ -158,7 +186,7 @@ Data-visualization-platform/
 │   │   ├── llm_service.py      # Ollama / HuggingFace LLM
 │   │   ├── rag_service.py      # ChromaDB + embeddings
 │   │   ├── code_executor.py    # Sandboxed code execution
-│   │   ├── feature_analysis.py # Feature analysis
+│   │   ├── feature_analysis.py # Feature analysis + PCA
 │   │   └── dataset_preprocessing.py
 │   └── models/                 # HuggingFace model cache (local dev only)
 ├── frontend/                   # React Frontend
@@ -182,6 +210,15 @@ User Browser → Nginx (port 80) → Flask API (port 5000) → Ollama (port 1143
               Serves SPA          REST endpoints         LLM inference
               Proxies /api        Code generation        llama3.2:3b
 ```
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/upload` | Upload and analyze a dataset |
+| `POST` | `/api/query` | Generate visualization from natural language |
+| `GET` | `/api/datasets` | List all loaded datasets |
+| `GET` | `/api/visualizations/<id>` | Regenerate visualizations for a dataset |
 
 ## Contributing
 
